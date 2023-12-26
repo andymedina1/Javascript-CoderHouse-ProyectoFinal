@@ -10,6 +10,8 @@ function stringToNumber (string) {
 function validarNumber (number) {
   if (isNaN(parseFloat(number))) {
     alert('Debe ingresar un número.')
+  } else if (parseFloat(number) < 0) {
+    alert('Debe ingresar un número válido.')
   } else {
     return parseFloat(number)
   }
@@ -84,6 +86,9 @@ let valorProducto
 
 let cantidadCuotas
 
+// Bienvenida
+alert("Calculadora de Cuotas:\nTomando el costo de un producto, devuelve el valor del costo de las cuotas con el interés correspondiente.")
+
 // Ingresar cantidad de productos
 do {
   totalProductos = validarNumber(prompt('A cuántos productos diferentes quiere calcular sus correspondientes cuotas?'))
@@ -127,5 +132,6 @@ for (let i = 0; i < totalProductos; i++) {
     mensaje = producto + ' te queda en ' + cantidadCuotas + ' cuotas de $' + resultado + ' cada una.\nCon un interés del 132,84%'
   }
 
+  console.log(mensaje)
   alert(mensaje)
 }
