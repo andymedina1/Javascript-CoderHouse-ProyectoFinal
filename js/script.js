@@ -16,7 +16,6 @@ function validarStringNoNumber(string) {
   }
 }
 
-
 //Información
 const baseDeDatos = [
   { nombre: "Tv", precio: 8463, stock: 5 },
@@ -41,63 +40,64 @@ const baseDeDatos = [
   { nombre: "Silla", precio: 6615, stock: 0 }
 ]
 
-
 //Bienvenida
 console.log('Bienvenido a nuestra tienda!')
 console.group('Tenemos a la venta los siguientes productos:')
 console.table(baseDeDatos)
 console.groupEnd()
 
-
 //Código
 
 class Carrito {
   constructor() {
     this.productos = []
+    this.total = 0
   }
 
+  // Método para añadir productos
   agregarProducto() {
     // Recibir y formatear la entrada
+    let producto
     do {
-      this.productoTemporal = validarStringNoNumber(prompt("Ingrese un producto para añadir al carrito:"))
-    } while (this.productoTemporal === undefined)
+      producto = validarStringNoNumber(prompt("Ingrese un producto para añadir al carrito:"))
+    } while (producto === undefined)
 
-    this.productoTemporal = String(this.productoTemporal).toLowerCase()
+    producto = String(producto).toLowerCase()
 
 
     //Verificar si el producto existe
-    let existe = baseDeDatos.some(elem => elem.nombre.toLowerCase() === this.productoTemporal)
+    let existe = baseDeDatos.some(elem => elem.nombre.toLowerCase() === producto)
 
     if (!existe) {
-      console.log(`No contamos con ese producto, elija otro`)
       alert(`No contamos con ese producto, elija otro`)
-      return
+      return `No contamos con ese producto, elija otro`
     }
 
     //Verificar el stock del producto
-    let stock = baseDeDatos.some(elem => (elem.nombre.toLowerCase() === this.productoTemporal && elem.stock > 0))
+    let stock = baseDeDatos.some(elem => (elem.nombre.toLowerCase() === producto && elem.stock > 0))
 
     if (!stock) {
-      console.log('El producto seleccionado está fuera de stock, elija otro por favor')
       alert('El producto seleccionado está fuera de stock, elija otro por favor')
+      return 'El producto seleccionado está fuera de stock, elija otro por favor'
     }
 
+
     //Después de cumplir las dos condiciones, añado el producto al carrito
-    if (existe && stock) {
-      let productoCase = String(this.productoTemporal)
-      productoCase = productoCase.charAt(0).toUpperCase() + productoCase.slice(1);
-      let indexProducto = baseDeDatos.findIndex(elem => elem.nombre === productoCase)
-      let productoFinal = { ...baseDeDatos[indexProducto] }
-      delete productoFinal.stock
-      this.productos.push(productoFinal)
-      alert(`Producto añadido al carrito!`)
-      return `${productoCase} añadido al carrito!`
-    }
+    let productoCase = String(producto)
+    productoCase = productoCase.charAt(0).toUpperCase() + productoCase.slice(1);
+    let indexProducto = baseDeDatos.findIndex(elem => elem.nombre === productoCase)
+    let productoFinal = { ...baseDeDatos[indexProducto] }
+    delete productoFinal.stock
+    this.productos.push(productoFinal)
+    alert(`Producto añadido al carrito!`)
+    return `${productoCase} añadido al carrito!`
 
   }
 
+  // Método para ver los productos del carrito
   verProductos() {
 
+    //Verificar que el carrito tenga productos
     if (this.productos.length === 0) {
       return 'Tu carrito está vacío!'
     }
@@ -107,39 +107,85 @@ class Carrito {
     console.groupEnd()
   }
 
+  // Método para eliminar productos del carrito
   eliminarProducto() {
+    //Verificar que el carrito tenga productos
+    if (this.productos.length === 0) {
+      alert('No puede eliminar productos. Su carrito ya está vacío.')
+      return 'No puede eliminar productos. Su carrito ya está vacío.'
+    }
+
+    //Recibir el producto a eliminar
+    let producto
+    do {
+      producto = validarStringNoNumber(prompt("Ingrese el nombre del producto que quiera eliminar de su carrito:"))
+    } while (producto === undefined)
+
+    producto = String(producto).toLowerCase()
+
+
+    //Verificar si el producto existe en el carrito
+    let existe = this.productos.some(elem => elem.nombre.toLowerCase() === producto)
+
+    if (!existe) {
+      alert(`Ese producto no se encuentra en su carrito.`)
+      return `El producto "${producto}" no se encuentra en su carrito.`
+    }
+
+    //Después de cumplir la condición, elimino el producto del carrito
+    let productoCase = String(producto)
+    productoCase = productoCase.charAt(0).toUpperCase() + productoCase.slice(1);
+    let indexProducto = this.productos.findIndex(elem => elem.nombre === productoCase)
+    this.productos.splice(indexProducto, 1)
+    alert(`Producto eliminado del carrito!`)
+    return `${productoCase} eliminado del carrito!`
+
   }
 
+  // Método para calcular la suma de los precios de los productos del carrito
   calcularTotal() {
+
+    //Verificar que el carrito tenga productos
+    if (this.productos.length === 0) {
+      return 'Tu carrito está vacío!'
+    }
+
+    //Suma de los precios
     let suma = 0;
     this.productos.forEach(product => suma += product.precio)
     this.verProductos()
-    console.log(`El total de tu carrito es: $${suma}`)
+    this.total = suma
+    alert(`El valor total de tu carrito es: $${suma}`)
+    return `El valor total de tu carrito es: $${suma}`
   }
 
+  // Método para volver a mostrar el listado de productos
   verListado() {
-    console.log('Estos son todos nuestros productos:')
+    console.group('Estos son todos nuestros productos:')
     console.table(baseDeDatos)
-    return 'Estos son todos nuestros productos:';
+    console.groupEnd()
+    console.log('Puedes añadir productos con el comando: %ccarrito.agregarProducto()', 'color: #00ff08');
   }
 
-  buscarProductos(producto) {
-    const entrada = producto.toLowerCase()
-    const answer = baseDeDatos.filter(elemento => elemento.nombre.toLowerCase().includes(entrada))
+  // Método para buscar productos dentro del listado
+  buscarProductos() {
+
+    // Recibir y formatear la entrada
+    let producto
+    do {
+      producto = validarStringNoNumber(prompt("Ingrese el nombre del producto a buscar:"))
+    } while (producto === undefined)
+    producto = String(producto).toLowerCase()
+
+    // Realizar la busqueda y mostrar la salida
+    const answer = baseDeDatos.filter(elemento => elemento.nombre.toLowerCase().includes(producto))
     console.group('Este es el resultado de la búsqueda:')
     console.table(answer)
     console.groupEnd()
+    return `La búsqueda devolvió ${answer.length} resultados`
   }
-
-
 
 }
 
-
 let carrito = new Carrito();
-
-
-
-
-
 
