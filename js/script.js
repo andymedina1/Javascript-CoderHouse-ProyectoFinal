@@ -29,7 +29,7 @@ const baseDeDatos = [
   { nombre: "Mouse", precio: 1976, stock: 0 },
   { nombre: "Auriculares", precio: 337, stock: 20 },
   { nombre: "Procesador", precio: 2643, stock: 3 },
-  { nombre: "MousePad", precio: 6743, stock: 28 },
+  { nombre: "Memoria", precio: 6743, stock: 28 },
   { nombre: "Amplificador", precio: 4812, stock: 4 },
   { nombre: "Llantas", precio: 7112, stock: 0 },
   { nombre: "Freezer", precio: 9376, stock: 4 },
@@ -66,9 +66,9 @@ class Carrito {
 
 
     //Verificar si el producto existe
-    let existe = baseDeDatos.some(elem => elem.nombre.toLowerCase() === producto)
+    let existeProducto = baseDeDatos.some(elem => elem.nombre.toLowerCase() === producto)
 
-    if (!existe) {
+    if (!existeProducto) {
       alert(`No contamos con ese producto, elija otro`)
       return `No contamos con ese producto, elija otro`
     }
@@ -99,12 +99,23 @@ class Carrito {
 
     //Verificar que el carrito tenga productos
     if (this.productos.length === 0) {
+      alert('Tu carrito está vacío!')
       return 'Tu carrito está vacío!'
     }
 
+    // Mostrar información útil del carrito
     console.group(`Estos son los productos que están actualmente en tu carrito:`)
     console.table(this.productos)
     console.groupEnd()
+
+    // Revisar singular o plural para la salida
+    if (this.productos.length < 2) {
+      alert(`Hay ${this.productos.length} producto en tu carrito.`)
+      return `Hay ${this.productos.length} producto en tu carrito.`
+    } else {
+      alert(`Hay ${this.productos.length} productos en tu carrito.`)
+      return `Hay ${this.productos.length} productos en tu carrito.`
+    }
   }
 
   // Método para eliminar productos del carrito
@@ -125,9 +136,9 @@ class Carrito {
 
 
     //Verificar si el producto existe en el carrito
-    let existe = this.productos.some(elem => elem.nombre.toLowerCase() === producto)
+    let existeProducto = this.productos.some(elem => elem.nombre.toLowerCase() === producto)
 
-    if (!existe) {
+    if (!existeProducto) {
       alert(`Ese producto no se encuentra en su carrito.`)
       return `El producto "${producto}" no se encuentra en su carrito.`
     }
@@ -147,6 +158,7 @@ class Carrito {
 
     //Verificar que el carrito tenga productos
     if (this.productos.length === 0) {
+      alert('Tu carrito está vacío!')
       return 'Tu carrito está vacío!'
     }
 
@@ -164,7 +176,8 @@ class Carrito {
     console.group('Estos son todos nuestros productos:')
     console.table(baseDeDatos)
     console.groupEnd()
-    console.log('Puedes añadir productos con el comando: %ccarrito.agregarProducto()', 'color: #00ff08');
+    console.log('Puedes añadir productos a tu carrito con el comando: %ccarrito.agregarProducto()', 'color: #00ff08');
+    return
   }
 
   // Método para buscar productos dentro del listado
@@ -179,10 +192,25 @@ class Carrito {
 
     // Realizar la busqueda y mostrar la salida
     const answer = baseDeDatos.filter(elemento => elemento.nombre.toLowerCase().includes(producto))
+
+    // En caso de no encontrar nada, notificar al usuario
+    if (!answer.length) {
+      alert(`La búsqueda no devolvió resultados`)
+      return `La búsqueda de "${producto}" no devolvió resultados`
+    }
+
     console.group('Este es el resultado de la búsqueda:')
     console.table(answer)
     console.groupEnd()
-    return `La búsqueda devolvió ${answer.length} resultados`
+
+    // Revisar singular o plural para la salida
+    if (answer.length < 2) {
+      alert(`La búsqueda devolvió ${answer.length} resultado`)
+      return `La búsqueda devolvió ${answer.length} resultado`
+    } else {
+      alert(`La búsqueda devolvió ${answer.length} resultados`)
+      return `La búsqueda devolvió ${answer.length} resultados`
+    }
   }
 
 }
