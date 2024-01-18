@@ -8,28 +8,122 @@
   <style>
     body {
       background: linear-gradient(to bottom right, #55566a, #282834);
-      height: 100vh;
+      height: 100%;
       margin: 0;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
     }
 
     h1 {
-      font-size: 5em;
-      text-shadow: 4px 4px 0px #2a2e30;
-      margin-bottom: 20px;
       color: lightsteelblue;
-      font-weight: 900;
       font-family: sans-serif;
+      font-size: 5em;
+      font-weight: 900;
+      line-height: 0.8em;
+      text-shadow: 4px 4px 0px #2a2e30;
+      margin: 0.2em;
+      margin-top: 0.5em;
+    }
+
+    h2 {
+      color: rgb(186, 216, 255);
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      font-size: 1.8em;
+      font-weight: 500;
+      line-height: 1em;
+      margin: 0.2em;
+    }
+
+    h4 {
+      color: black;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: large;
+    }
+
+    p {
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      line-height: 0.5em;
+    }
+
+    .title-container {
+      width: 80vw;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .middle-container {
+      width: 98vw;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-evenly;
+      gap: 1em;
+      padding: 0.5em;
+    }
+
+    .card {
+      width: 400px;
+      height: 150px;
+      text-align: center;
+      background-color: lightslategray;
+      border: 1px solid black;
+      border-radius: 10px;
     }
   </style>
 </head>
 
 <body>
-  <h1>Carrito?</h1>
+  <div class="title-container">
+    <h1>Carrito de Compras</h1>
+    <h2>Esta es una aplicación de consola</h2>
+    <h2>Cuenta con los siguientes comandos para realizar diferentes operaciones:</h2>
+  </div>
+  <div class="middle-container">
+    <div class="row">
+      <div class="card">
+        <h4>carrito.agregarProducto()</h4>
+        <p>Comando para agregar productos del listado</p>
+        <p>al carrito de compra</p>
+      </div>
+      <div class="card">
+        <h4>carrito.verProductos()</h4>
+        <p>Comando para ver los productos</p>
+        <p>dentro del carrito</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card">
+        <h4>carrito.eliminarProducto()</h4>
+        <p>Comando para eliminar</p>
+        <p>un producto del carrito</p>
+      </div>
+      <div class="card">
+        <h4>carrito.calcularTotal()</h4>
+        <p>Comando para calcular la suma de los precios</p>
+        <p>de los productos del carrito</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card">
+        <h4>carrito.verListado()</h4>
+        <p>Comando para volver a mostrar</p>
+        <p>el listado de productos</p>
+      </div>
+      <div class="card">
+        <h4>carrito.buscador()</h4>
+        <p>Comando para buscar un producto</p>
+        <p>dentro del listado de productos</p>
+      </div>
+    </div>
+  </div>
 
-  <script src="js/script.js" ></script>
+  <script src="js/script.js"></script>
 </body>
 
 </html>
