@@ -203,30 +203,45 @@ const modal = new bootstrap.Modal(document.querySelector('#miModal'))
 const buscador = document.querySelector('#buscador')
 const filtro = document.querySelector('#filtro')
 
-buscador.addEventListener('input', (e) => {
-  const busqueda = e.target.value
-  console.log(busqueda)
-})
+
 
 
 botonCarrito.addEventListener('click', () => {
   modal.show()
 })
 
-container.innerHTML = ''
-baseDeDatos.forEach(producto => {
-  container.innerHTML += /*html*/
-    `<div class="tarjeta">
-    <div class="producto">
-      <h4>${producto.nombre}</h4>
-      <img src="${producto.img}" alt="Imágen de ${producto.nombre}">
-      <h4>$${producto.precio}</h4>
-    </div>
-    <div>
-      <button type="button" class="btn btn-primary">
-      <span>Agregar al carrito</span>
-      <span><i class="bi bi-cart4"></i></span>
-      </button>
-    </div>
-    `
+
+//Función para mostrar los productos en pantalla
+function renderProducts(data) {
+  container.innerHTML = ''
+  data.forEach(producto => {
+    container.innerHTML += /*html*/
+      `<div class="tarjeta">
+      <div class="producto">
+        <h4>${producto.nombre}</h4>
+        <img src="${producto.img}" alt="Imágen de ${producto.nombre}">
+        <h4>$${producto.precio}</h4>
+      </div>
+      <div>
+        <button type="button" class="btn btn-primary">
+        <span>Agregar al carrito</span>
+        <span><i class="bi bi-cart4"></i></span>
+        </button>
+      </div>
+      `
+  })
+}
+
+
+//Primero muestro todos los productos
+renderProducts(baseDeDatos)
+
+
+//Función del buscador
+buscador.addEventListener('input', (e) => {
+  const busqueda = e.target.value.toLowerCase()
+  const resultado = baseDeDatos.filter(producto =>
+    producto.nombre.toLowerCase().includes(busqueda)
+  )
+  renderProducts(resultado)
 })
