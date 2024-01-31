@@ -27,7 +27,7 @@
   <header class="title-container container-fluid">
     <div class="d-flex justify-content-between">
       <h1 class="titulo">Carrito de Compras</h1>
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      <button id="botonCarrito" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
         <i class="bi bi-cart4"></i>
         <span class="badge text-bg-secondary">5</span>
       </button>
@@ -36,14 +36,14 @@
       <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
           <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+            <input id="buscador" class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
           </form>
         </div>
       </nav>
 
 
       <div>
-        <select class="form-select" aria-label="Default select example">
+        <select id="filtro" class="form-select" aria-label="Default select example">
           <option selected>Filtrar</option>
           <option value="1">One</option>
           <option value="2">Two</option>
@@ -55,26 +55,25 @@
   </header>
 
   <!-- Modal -->
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal fade" id="miModal">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Título del Modal</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          <p>Cuerpo del Modal</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-primary">Entendido</button>
         </div>
       </div>
     </div>
   </div>
 
-  <main class="middle-container">
+  <main class="middle-container" id="#middleContainer">
     <div class="tarjeta">
       <div class="producto">
         <h4>Producto</h4>

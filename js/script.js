@@ -23,28 +23,12 @@ const baseDeDatos = [
   { nombre: 'Notebook', precio: 4390, stock: 23 },
   { nombre: 'Licuadora', precio: 3869, stock: 16 },
   { nombre: 'Heladera', precio: 4391, stock: 0 },
-  { nombre: 'Batidora', precio: 6924, stock: 0 },
-  { nombre: 'Teclado', precio: 7640, stock: 0 },
-  { nombre: 'Lavarropas', precio: 7429, stock: 9 },
+  { nombre: 'Teclado', precio: 7640, stock: 20 },
   { nombre: 'Mouse', precio: 1976, stock: 0 },
-  { nombre: 'Auriculares', precio: 337, stock: 20 },
-  { nombre: 'Procesador', precio: 2643, stock: 3 },
+  { nombre: 'Auriculares', precio: 337, stock: 3 },
+  { nombre: 'Procesador', precio: 2643, stock: 0 },
   { nombre: 'Memoria', precio: 6743, stock: 28 },
-  { nombre: 'Amplificador', precio: 4812, stock: 4 },
-  { nombre: 'Llantas', precio: 7112, stock: 0 },
-  { nombre: 'Freezer', precio: 9376, stock: 4 },
-  { nombre: 'Podadora', precio: 5748, stock: 0 },
-  { nombre: 'Zapatillas', precio: 1381, stock: 17 },
-  { nombre: 'Pantalones', precio: 3531, stock: 11 },
-  { nombre: 'Remera', precio: 1092, stock: 3 },
-  { nombre: 'Silla', precio: 6615, stock: 0 }
 ]
-
-// Bienvenida
-console.log('Bienvenido a nuestra tienda!')
-console.group('Tenemos a la venta los siguientes productos:')
-console.table(baseDeDatos)
-console.groupEnd()
 
 // Código
 
@@ -207,3 +191,24 @@ class Carrito {
 }
 
 const carrito = new Carrito()
+
+
+
+
+// Elementos del DOM
+
+const container = document.querySelector('#middleContainer')
+const botonCarrito = document.querySelector('#botonCarrito')
+const modal = new bootstrap.Modal(document.querySelector('#miModal'))
+const buscador = document.querySelector('#buscador')
+const filtro = document.querySelector('#filtro')
+
+buscador.addEventListener('input', (e) => {
+  const busqueda = e.target.value
+  console.log(busqueda)
+})
+
+
+botonCarrito.addEventListener('click', () => {
+ modal.show()
+})
