@@ -18,16 +18,16 @@ function validarStringNoNumber(string) {
 
 // Información
 const baseDeDatos = [
-  { nombre: 'Tv', precio: 8463, stock: 5 },
-  { nombre: 'Monitor', precio: 7338, stock: 27 },
-  { nombre: 'Notebook', precio: 4390, stock: 23 },
-  { nombre: 'Licuadora', precio: 3869, stock: 16 },
-  { nombre: 'Heladera', precio: 4391, stock: 0 },
-  { nombre: 'Teclado', precio: 7640, stock: 20 },
-  { nombre: 'Mouse', precio: 1976, stock: 0 },
-  { nombre: 'Auriculares', precio: 337, stock: 3 },
-  { nombre: 'Procesador', precio: 2643, stock: 0 },
-  { nombre: 'Memoria', precio: 6743, stock: 28 },
+  { nombre: 'Tv', precio: 8463, stock: 5, img: 'img/tv.jpg' },
+  { nombre: 'Monitor', precio: 7338, stock: 27, img: 'img/monitor.jpg' },
+  { nombre: 'Notebook', precio: 4390, stock: 23, img: 'img/notebook.jpg' },
+  { nombre: 'Licuadora', precio: 3869, stock: 16, img: 'img/licuadora.jpg' },
+  { nombre: 'Heladera', precio: 4391, stock: 0, img: 'img/heladera.jpg' },
+  { nombre: 'Teclado', precio: 7640, stock: 20, img: 'img/teclado.jpg' },
+  { nombre: 'Mouse', precio: 1976, stock: 0, img: 'img/mouse.jpg' },
+  { nombre: 'Auriculares', precio: 337, stock: 3, img: 'img/auriculares.jpg' },
+  { nombre: 'Procesador', precio: 2643, stock: 0, img: 'img/procesador.jpg' },
+  { nombre: 'Memoria', precio: 6743, stock: 28, img: 'img/memoria.jpg' },
 ]
 
 // Código
@@ -210,5 +210,23 @@ buscador.addEventListener('input', (e) => {
 
 
 botonCarrito.addEventListener('click', () => {
- modal.show()
+  modal.show()
+})
+
+container.innerHTML = ''
+baseDeDatos.forEach(producto => {
+  container.innerHTML += /*html*/
+    `<div class="tarjeta">
+    <div class="producto">
+      <h4>${producto.nombre}</h4>
+      <img src="${producto.img}" alt="Imágen de ${producto.nombre}">
+      <h4>$${producto.precio}</h4>
+    </div>
+    <div>
+      <button type="button" class="btn btn-primary">
+      <span>Agregar al carrito</span>
+      <span><i class="bi bi-cart4"></i></span>
+      </button>
+    </div>
+    `
 })
