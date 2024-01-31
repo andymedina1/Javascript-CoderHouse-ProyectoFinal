@@ -1,5 +1,6 @@
 body {
   background: linear-gradient(to bottom right, #55566a, #282834);
+  min-height: 100vh;
   height: 100%;
   margin: 0;
   display: flex;
@@ -75,4 +76,9 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+/* Solución al error de los botones*/
+span {
+  pointer-events: none;
 }

@@ -18,16 +18,16 @@ function validarStringNoNumber(string) {
 
 // Información
 const baseDeDatos = [
-  { nombre: 'Tv', precio: 8463, stock: 5, img: 'img/tv.jpg', categoria: 'pantallas' },
-  { nombre: 'Monitor', precio: 7338, stock: 27, img: 'img/monitor.jpg', categoria: 'pantallas' },
-  { nombre: 'Notebook', precio: 4390, stock: 23, img: 'img/notebook.jpg', categoria: 'equipos' },
-  { nombre: 'Licuadora', precio: 3869, stock: 16, img: 'img/licuadora.jpg', categoria: 'hogar' },
-  { nombre: 'Heladera', precio: 4391, stock: 0, img: 'img/heladera.jpg', categoria: 'hogar' },
-  { nombre: 'Teclado', precio: 7640, stock: 20, img: 'img/teclado.jpg', categoria: 'perifericos' },
-  { nombre: 'Mouse', precio: 1976, stock: 0, img: 'img/mouse.jpg', categoria: 'perifericos' },
-  { nombre: 'Auriculares', precio: 337, stock: 3, img: 'img/auriculares.jpg', categoria: 'perifericos' },
-  { nombre: 'Procesador', precio: 2643, stock: 0, img: 'img/procesador.jpg', categoria: 'complementos' },
-  { nombre: 'Memoria', precio: 6743, stock: 28, img: 'img/memoria.jpg', categoria: 'complementos' },
+  { id: 0, nombre: 'Tv', precio: 8463, stock: 5, img: 'img/tv.jpg', categoria: 'pantallas' },
+  { id: 1, nombre: 'Monitor', precio: 7338, stock: 27, img: 'img/monitor.jpg', categoria: 'pantallas' },
+  { id: 2, nombre: 'Notebook', precio: 4390, stock: 23, img: 'img/notebook.jpg', categoria: 'equipos' },
+  { id: 3, nombre: 'Licuadora', precio: 3869, stock: 16, img: 'img/licuadora.jpg', categoria: 'hogar' },
+  { id: 4, nombre: 'Heladera', precio: 4391, stock: 0, img: 'img/heladera.jpg', categoria: 'hogar' },
+  { id: 5, nombre: 'Teclado', precio: 7640, stock: 20, img: 'img/teclado.jpg', categoria: 'perifericos' },
+  { id: 6, nombre: 'Mouse', precio: 1976, stock: 0, img: 'img/mouse.jpg', categoria: 'perifericos' },
+  { id: 7, nombre: 'Auriculares', precio: 337, stock: 3, img: 'img/auriculares.jpg', categoria: 'perifericos' },
+  { id: 8, nombre: 'Procesador', precio: 2643, stock: 0, img: 'img/procesador.jpg', categoria: 'complementos' },
+  { id: 9, nombre: 'Memoria', precio: 6743, stock: 28, img: 'img/memoria.jpg', categoria: 'complementos' },
 ]
 
 // Código
@@ -206,6 +206,7 @@ const filtro = document.querySelector('#filtro')
 
 
 
+// Botón del Carrito
 botonCarrito.addEventListener('click', () => {
   modal.show()
 })
@@ -223,7 +224,7 @@ function renderProducts(data) {
         <h4>$${producto.precio}</h4>
       </div>
       <div>
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary agregarCarrito" id="${producto.id}">
         <span>Agregar al carrito</span>
         <span><i class="bi bi-cart4"></i></span>
         </button>
@@ -255,4 +256,27 @@ filtro.addEventListener('input', (e) => {
   )
   renderProducts(resultado)
 })
+
+
+//        Función botón Agregar
+
+// obtengo los botones 
+const botonesAgregar = document.querySelectorAll('.agregarCarrito')
+
+// Le agrego la función a cada uno
+botonesAgregar.forEach(btn => {
+  btn.addEventListener('click', (btn) => {
+    agregar(btn)
+  })
+});
+
+const esteCarrito = []
+
+//Función para agregar los productos al carrito y guardar en LocalStorage
+function agregar(btn) {
+  const id = btn.target.id
+  const index = baseDeDatos.findIndex(producto => producto.id == id)
+  esteCarrito.push(baseDeDatos[index])
+  localStorage.setItem('carrito', JSON.stringify(esteCarrito));
+}
 
