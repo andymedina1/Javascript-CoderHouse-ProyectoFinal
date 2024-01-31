@@ -18,16 +18,16 @@ function validarStringNoNumber(string) {
 
 // Información
 const baseDeDatos = [
-  { nombre: 'Tv', precio: 8463, stock: 5, img: 'img/tv.jpg' },
-  { nombre: 'Monitor', precio: 7338, stock: 27, img: 'img/monitor.jpg' },
-  { nombre: 'Notebook', precio: 4390, stock: 23, img: 'img/notebook.jpg' },
-  { nombre: 'Licuadora', precio: 3869, stock: 16, img: 'img/licuadora.jpg' },
-  { nombre: 'Heladera', precio: 4391, stock: 0, img: 'img/heladera.jpg' },
-  { nombre: 'Teclado', precio: 7640, stock: 20, img: 'img/teclado.jpg' },
-  { nombre: 'Mouse', precio: 1976, stock: 0, img: 'img/mouse.jpg' },
-  { nombre: 'Auriculares', precio: 337, stock: 3, img: 'img/auriculares.jpg' },
-  { nombre: 'Procesador', precio: 2643, stock: 0, img: 'img/procesador.jpg' },
-  { nombre: 'Memoria', precio: 6743, stock: 28, img: 'img/memoria.jpg' },
+  { nombre: 'Tv', precio: 8463, stock: 5, img: 'img/tv.jpg', categoria: 'pantallas' },
+  { nombre: 'Monitor', precio: 7338, stock: 27, img: 'img/monitor.jpg', categoria: 'pantallas' },
+  { nombre: 'Notebook', precio: 4390, stock: 23, img: 'img/notebook.jpg', categoria: 'equipos' },
+  { nombre: 'Licuadora', precio: 3869, stock: 16, img: 'img/licuadora.jpg', categoria: 'hogar' },
+  { nombre: 'Heladera', precio: 4391, stock: 0, img: 'img/heladera.jpg', categoria: 'hogar' },
+  { nombre: 'Teclado', precio: 7640, stock: 20, img: 'img/teclado.jpg', categoria: 'perifericos' },
+  { nombre: 'Mouse', precio: 1976, stock: 0, img: 'img/mouse.jpg', categoria: 'perifericos' },
+  { nombre: 'Auriculares', precio: 337, stock: 3, img: 'img/auriculares.jpg', categoria: 'perifericos' },
+  { nombre: 'Procesador', precio: 2643, stock: 0, img: 'img/procesador.jpg', categoria: 'complementos' },
+  { nombre: 'Memoria', precio: 6743, stock: 28, img: 'img/memoria.jpg', categoria: 'complementos' },
 ]
 
 // Código
@@ -245,3 +245,14 @@ buscador.addEventListener('input', (e) => {
   )
   renderProducts(resultado)
 })
+
+
+//Función para filtrar
+filtro.addEventListener('input', (e) => {
+  const input = e.target.value
+  const resultado = baseDeDatos.filter(producto =>
+    producto.categoria.includes(input)
+  )
+  renderProducts(resultado)
+})
+
