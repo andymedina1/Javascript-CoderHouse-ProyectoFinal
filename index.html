@@ -26,13 +26,21 @@
 <body>
   <header class="title-container container-fluid">
     <div class="d-flex justify-content-between">
+      
+      <!-- Título -->
       <h1 class="titulo">Carrito de Compras</h1>
-      <button id="botonCarrito" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+
+      <!-- Botón Carrito -->
+      <button id="botonCarrito" type="button" class="btn btn-primary">
         <i class="bi bi-cart4"></i>
-        <span class="badge text-bg-secondary">5</span>
+        <span class="badge text-bg-secondary" id="numeroCarrito">0</span>
       </button>
+    
     </div>
+
     <div class="d-flex justify-content-evenly">
+
+      <!-- Buscador -->
       <nav class="navbar bg-body-tertiary">
         <div class="container-fluid">
           <form class="d-flex" role="search">
@@ -41,7 +49,7 @@
         </div>
       </nav>
 
-
+      <!-- Filtro de Productos -->
       <div class="d-flex justify-content-between align-items-center">
         <label class="form-control w-auto bg-primary border-primary" for="filtro">Filtrar</label>
         <select id="filtro" class="form-select">
@@ -55,6 +63,7 @@
       </div>
 
     </div>
+    
   </header>
 
   <!-- Modal -->
@@ -62,11 +71,25 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Título del Modal</h1>
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Carrito de Compras</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <p>Cuerpo del Modal</p>
+          <table class="table table-borderless">
+            <thead>
+              <tr>
+                <th>Producto</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+
+            <tbody id="modalProductos">
+
+            </tbody>
+
+          </table>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

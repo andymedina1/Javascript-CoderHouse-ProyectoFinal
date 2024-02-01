@@ -202,12 +202,14 @@ const botonCarrito = document.querySelector('#botonCarrito')
 const modal = new bootstrap.Modal(document.querySelector('#miModal'))
 const buscador = document.querySelector('#buscador')
 const filtro = document.querySelector('#filtro')
-
+const modalProductos = document.querySelector('#modalProductos')
+const numeroCarrito = document.querySelector('#numeroCarrito')
 
 
 
 // Botón del Carrito
 botonCarrito.addEventListener('click', () => {
+  fillCart()
   modal.show()
 })
 
@@ -278,5 +280,28 @@ function agregar(btn) {
   const index = baseDeDatos.findIndex(producto => producto.id == id)
   esteCarrito.push(baseDeDatos[index])
   localStorage.setItem('carrito', JSON.stringify(esteCarrito));
+
+  //Cambiar número del carrito
+  numeroCarrito.innerHTML = ''
+  numeroCarrito.innerHTML +=`${esteCarrito.length}`
+}
+
+
+
+
+//Función para cargar los productos en el carrito
+function fillCart() {
+  modalProductos.innerHTML = ''
+  const productosCarrito = JSON.parse(localStorage.getItem('carrito'))
+  productosCarrito.forEach(producto => {
+    modalProductos.innerHTML += /* html */
+    `<tr>
+      <td> ${producto.nombre} </td>
+      <td> unidades</td>
+      <td>$${producto.precio}</td>
+      <td>total</td>
+    </tr>
+    `
+  });
 }
 
