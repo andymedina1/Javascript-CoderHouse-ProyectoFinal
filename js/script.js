@@ -220,12 +220,12 @@ function renderProducts(data) {
   data.forEach(producto => {
     container.innerHTML += /*html*/
       `<div class="tarjeta">
-      <div class="producto">
+      <div class="tarjeta-producto">
         <h4>${producto.nombre}</h4>
         <img src="${producto.img}" alt="Imágen de ${producto.nombre}">
-        <h4>$${producto.precio}</h4>
+        <h4 class="tarjeta-precio">$${producto.precio}</h4>
       </div>
-      <div>
+      <div class="tarjeta-boton">
         <button type="button" class="btn btn-primary agregarCarrito" id="${producto.id}">
         <span>Agregar al carrito</span>
         <span><i class="bi bi-cart4"></i></span>
