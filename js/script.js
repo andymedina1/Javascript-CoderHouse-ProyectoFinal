@@ -198,17 +198,18 @@ const carrito = new Carrito()
 // Elementos del DOM
 
 const container = document.querySelector('#middleContainer')
-const botonCarrito = document.querySelector('#botonCarrito')
+const botonAbrirCarrito = document.querySelector('#botonCarrito')
 const modal = new bootstrap.Modal(document.querySelector('#miModal'))
 const buscador = document.querySelector('#buscador')
 const filtro = document.querySelector('#filtro')
 const modalProductos = document.querySelector('#modalProductos')
 const numeroCarrito = document.querySelector('#numeroCarrito')
+const botonVaciarCarrito = document.querySelector('#vaciarCarrito')
 
 
 
 // Botón del Carrito
-botonCarrito.addEventListener('click', () => {
+botonAbrirCarrito.addEventListener('click', () => {
   fillCart()
   modal.show()
 })
@@ -279,9 +280,7 @@ function agregarMaestro() {
     esteCarrito.push(baseDeDatos[index])
     localStorage.setItem('carrito', JSON.stringify(esteCarrito));
 
-    //Cambiar número del carrito
-    numeroCarrito.innerHTML = ''
-    numeroCarrito.innerHTML += `${esteCarrito.length}`
+    cartNumber()
   }
 
 }
@@ -305,10 +304,29 @@ function fillCart() {
 
 
 
+//Cambiar número del carrito
+function cartNumber() {
+  const number = JSON.parse(localStorage.getItem('carrito')).length
+  numeroCarrito.innerHTML = ''
+  numeroCarrito.innerHTML += `${number}`
+}
 
+//Función para vaciar el carrito
+function vaciarCarrito() {
+  localStorage.setItem('carrito', JSON.stringify([]));
+  cartNumber()
+  modal.hide()
+}
+
+//Botón para vaciar el carrito
+botonVaciarCarrito.addEventListener('click', vaciarCarrito)
 
 
 //Primero muestro todos los productos
 renderProducts(baseDeDatos)
-//E inicializo el carrito vacío
-const esteCarrito = []
+
+//Obtengo el carrito anterior o inicializo uno vacío
+const esteCarrito = JSON.parse(localStorage.getItem('carrito')) || []
+
+// Actualizo el número del carrito
+cartNumber()
