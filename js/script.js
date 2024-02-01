@@ -233,11 +233,9 @@ function renderProducts(data) {
       </div>
       `
   })
+  agregarMaestro()
 }
 
-
-//Primero muestro todos los productos
-renderProducts(baseDeDatos)
 
 
 //Función del buscador
@@ -260,33 +258,33 @@ filtro.addEventListener('input', (e) => {
 })
 
 
-//        Función botón Agregar
+//Función para Agregar al carrito desde botón de tarjeta
+function agregarMaestro() {
 
-// obtengo los botones 
-const botonesAgregar = document.querySelectorAll('.agregarCarrito')
+  // obtengo los botones 
+  const botonesAgregar = document.querySelectorAll('.agregarCarrito')
 
-// Le agrego la función a cada uno
-botonesAgregar.forEach(btn => {
-  btn.addEventListener('click', (btn) => {
-    agregar(btn)
-  })
-});
+  // Le agrego la función a cada uno
+  botonesAgregar.forEach(btn => {
+    btn.addEventListener('click', (btn) => {
+      agregar(btn)
+    })
+  });
 
-const esteCarrito = []
 
-//Función para agregar los productos al carrito y guardar en LocalStorage
-function agregar(btn) {
-  const id = btn.target.id
-  const index = baseDeDatos.findIndex(producto => producto.id == id)
-  esteCarrito.push(baseDeDatos[index])
-  localStorage.setItem('carrito', JSON.stringify(esteCarrito));
+  //Función para agregar los productos al carrito y guardar en LocalStorage
+  function agregar(btn) {
+    const id = btn.target.id
+    const index = baseDeDatos.findIndex(producto => producto.id == id)
+    esteCarrito.push(baseDeDatos[index])
+    localStorage.setItem('carrito', JSON.stringify(esteCarrito));
 
-  //Cambiar número del carrito
-  numeroCarrito.innerHTML = ''
-  numeroCarrito.innerHTML +=`${esteCarrito.length}`
+    //Cambiar número del carrito
+    numeroCarrito.innerHTML = ''
+    numeroCarrito.innerHTML += `${esteCarrito.length}`
+  }
+
 }
-
-
 
 
 //Función para cargar los productos en el carrito
@@ -295,7 +293,7 @@ function fillCart() {
   const productosCarrito = JSON.parse(localStorage.getItem('carrito'))
   productosCarrito.forEach(producto => {
     modalProductos.innerHTML += /* html */
-    `<tr>
+      `<tr>
       <td> ${producto.nombre} </td>
       <td> unidades</td>
       <td>$${producto.precio}</td>
@@ -305,3 +303,12 @@ function fillCart() {
   });
 }
 
+
+
+
+
+
+//Primero muestro todos los productos
+renderProducts(baseDeDatos)
+//E inicializo el carrito vacío
+const esteCarrito = []
