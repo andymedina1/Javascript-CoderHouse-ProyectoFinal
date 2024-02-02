@@ -313,6 +313,7 @@ function cartNumber() {
 
 //Función para vaciar el carrito
 function vaciarCarrito() {
+  esteCarrito = []
   localStorage.setItem('carrito', JSON.stringify([]));
   cartNumber()
   modal.hide()
@@ -326,7 +327,7 @@ botonVaciarCarrito.addEventListener('click', vaciarCarrito)
 renderProducts(baseDeDatos)
 
 //Obtengo el carrito anterior o inicializo uno vacío
-const esteCarrito = JSON.parse(localStorage.getItem('carrito')) || []
+let esteCarrito = JSON.parse(localStorage.getItem('carrito')) || []
 
 // Actualizo el número del carrito
 cartNumber()
