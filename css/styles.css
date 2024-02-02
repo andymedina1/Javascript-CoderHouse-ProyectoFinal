@@ -14,6 +14,7 @@ footer {
   text-align: center;
   width: 100%;
   padding: 0.3em;
+  min-height: 1.5em;
 }
 
 /* .navbar {
@@ -62,6 +63,7 @@ p {
   gap: 1em;
   padding: 0.5em;
   justify-content: space-evenly;
+  flex: 1;
 }
 
 .tarjeta {
