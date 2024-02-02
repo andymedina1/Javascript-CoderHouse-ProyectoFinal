@@ -203,6 +203,7 @@ const modal = new bootstrap.Modal(document.querySelector('#miModal'))
 const buscador = document.querySelector('#buscador')
 const filtro = document.querySelector('#filtro')
 const modalProductos = document.querySelector('#modalProductos')
+const modalTotal = document.querySelector('#modalTotal')
 const numeroCarrito = document.querySelector('#numeroCarrito')
 const botonVaciarCarrito = document.querySelector('#vaciarCarrito')
 
@@ -300,6 +301,7 @@ function agregarMaestro() {
 //Función para cargar los productos en el carrito
 function fillCart() {
   modalProductos.innerHTML = ''
+  let totalFinal = 0;
   const productosCarrito = JSON.parse(localStorage.getItem('carrito'))
   productosCarrito.forEach(producto => {
     modalProductos.innerHTML += /* html */
@@ -310,7 +312,10 @@ function fillCart() {
       <td>$${producto.cantidad * producto.precio}</td>
     </tr>
     `
+    totalFinal += (producto.cantidad * producto.precio)
   });
+  modalTotal.innerHTML = ''
+  modalTotal.innerHTML += `Total: $${totalFinal}`
 }
 
 
