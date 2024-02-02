@@ -18,16 +18,16 @@ function validarStringNoNumber(string) {
 
 // Información
 const baseDeDatos = [
-  { id: 0, nombre: 'Tv', precio: 8463, stock: 5, img: 'img/tv.jpg', categoria: 'pantallas' },
-  { id: 1, nombre: 'Monitor', precio: 7338, stock: 27, img: 'img/monitor.jpg', categoria: 'pantallas' },
-  { id: 2, nombre: 'Notebook', precio: 4390, stock: 23, img: 'img/notebook.jpg', categoria: 'equipos' },
-  { id: 3, nombre: 'Licuadora', precio: 3869, stock: 16, img: 'img/licuadora.jpg', categoria: 'hogar' },
-  { id: 4, nombre: 'Heladera', precio: 4391, stock: 0, img: 'img/heladera.jpg', categoria: 'hogar' },
-  { id: 5, nombre: 'Teclado', precio: 7640, stock: 20, img: 'img/teclado.jpg', categoria: 'perifericos' },
-  { id: 6, nombre: 'Mouse', precio: 1976, stock: 0, img: 'img/mouse.jpg', categoria: 'perifericos' },
-  { id: 7, nombre: 'Auriculares', precio: 337, stock: 3, img: 'img/auriculares.jpg', categoria: 'perifericos' },
-  { id: 8, nombre: 'Procesador', precio: 2643, stock: 0, img: 'img/procesador.jpg', categoria: 'complementos' },
-  { id: 9, nombre: 'Memoria', precio: 6743, stock: 28, img: 'img/memoria.jpg', categoria: 'complementos' },
+  { id: 0, nombre: 'Tv', precio: 8463, categoria: 'pantallas', cantidad: 1, img: 'img/tv.jpg' },
+  { id: 1, nombre: 'Monitor', precio: 3387, categoria: 'pantallas', cantidad: 1, img: 'img/monitor.jpg' },
+  { id: 2, nombre: 'Notebook', precio: 4390, categoria: 'equipos', cantidad: 1, img: 'img/notebook.jpg' },
+  { id: 3, nombre: 'Licuadora', precio: 3869, categoria: 'hogar', cantidad: 1, img: 'img/licuadora.jpg' },
+  { id: 4, nombre: 'Heladera', precio: 4391, categoria: 'hogar', cantidad: 1, img: 'img/heladera.jpg' },
+  { id: 5, nombre: 'Teclado', precio: 6400, categoria: 'perifericos', cantidad: 1, img: 'img/teclado.jpg' },
+  { id: 6, nombre: 'Mouse', precio: 976, categoria: 'perifericos', cantidad: 1, img: 'img/mouse.jpg' },
+  { id: 7, nombre: 'Auriculares', precio: 337, categoria: 'perifericos', cantidad: 1, img: 'img/auriculares.jpg' },
+  { id: 8, nombre: 'Procesador', precio: 2643, categoria: 'complementos', cantidad: 1, img: 'img/procesador.jpg' },
+  { id: 9, nombre: 'Memoria', precio: 6743, categoria: 'complementos', cantidad: 1, img: 'img/memoria.jpg' },
 ]
 
 // Código
@@ -277,7 +277,18 @@ function agregarMaestro() {
   function agregar(btn) {
     const id = btn.target.id
     const index = baseDeDatos.findIndex(producto => producto.id == id)
-    esteCarrito.push(baseDeDatos[index])
+    const producto = baseDeDatos[index]
+
+    //Verifico si el producto está en el carrito
+    if (esteCarrito.some(prod => prod.id == producto.id)) {
+      //Si el producto ya está en el carrito, solo aumento la cantidad
+      const dice = esteCarrito.findIndex(prod => prod.id == producto.id)
+      esteCarrito[dice].cantidad += 1;
+    } else {
+      //Si el producto NO está en el carrito, añado el nuevo producto
+      esteCarrito.push({...baseDeDatos[index]})
+    }
+
     localStorage.setItem('carrito', JSON.stringify(esteCarrito));
 
     cartNumber()
@@ -294,9 +305,9 @@ function fillCart() {
     modalProductos.innerHTML += /* html */
       `<tr>
       <td> ${producto.nombre} </td>
-      <td> unidades</td>
+      <td> ${producto.cantidad}</td>
       <td>$${producto.precio}</td>
-      <td>total</td>
+      <td>$${producto.cantidad * producto.precio}</td>
     </tr>
     `
   });
@@ -306,16 +317,19 @@ function fillCart() {
 
 //Cambiar número del carrito
 function cartNumber() {
-  const number = JSON.parse(localStorage.getItem('carrito')).length
-  numeroCarrito.innerHTML = ''
-  numeroCarrito.innerHTML += `${number}`
+  let count = 0;
+  const carrito = JSON.parse(localStorage.getItem('carrito'))
+  carrito.forEach(producto => {
+    count += producto.cantidad
+  });
+  numeroCarrito.innerHTML = count
 }
 
 //Función para vaciar el carrito
 function vaciarCarrito() {
   esteCarrito = []
   localStorage.setItem('carrito', JSON.stringify([]));
-  cartNumber()
+  numeroCarrito.innerHTML = 0
   modal.hide()
 }
 
