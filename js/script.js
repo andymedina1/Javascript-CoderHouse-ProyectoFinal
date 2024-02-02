@@ -200,12 +200,14 @@ const carrito = new Carrito()
 const container = document.querySelector('#middleContainer')
 const botonAbrirCarrito = document.querySelector('#botonCarrito')
 const modal = new bootstrap.Modal(document.querySelector('#miModal'))
+const modalCompra = new bootstrap.Modal(document.querySelector('#modalCompra'))
 const buscador = document.querySelector('#buscador')
 const filtro = document.querySelector('#filtro')
 const modalProductos = document.querySelector('#modalProductos')
 const modalTotal = document.querySelector('#modalTotal')
 const numeroCarrito = document.querySelector('#numeroCarrito')
 const botonVaciarCarrito = document.querySelector('#vaciarCarrito')
+const botonComprarCarrito = document.querySelector('#comprarCarrito')
 
 
 
@@ -287,7 +289,7 @@ function agregarMaestro() {
       esteCarrito[dice].cantidad += 1;
     } else {
       //Si el producto NO está en el carrito, añado el nuevo producto
-      esteCarrito.push({...baseDeDatos[index]})
+      esteCarrito.push({ ...baseDeDatos[index] })
     }
 
     localStorage.setItem('carrito', JSON.stringify(esteCarrito));
@@ -340,6 +342,18 @@ function vaciarCarrito() {
 
 //Botón para vaciar el carrito
 botonVaciarCarrito.addEventListener('click', vaciarCarrito)
+
+
+
+//Función para comprar el carrito
+function comprarCarrito() {
+  modal.hide()
+  modalCompra.show()
+  vaciarCarrito()
+}
+
+//Botón para comprar el carrito
+botonComprarCarrito.addEventListener('click', comprarCarrito)
 
 
 //Primero muestro todos los productos
