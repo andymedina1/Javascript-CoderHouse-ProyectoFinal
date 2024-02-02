@@ -201,6 +201,7 @@ const container = document.querySelector('#middleContainer')
 const botonAbrirCarrito = document.querySelector('#botonCarrito')
 const modal = new bootstrap.Modal(document.querySelector('#miModal'))
 const modalCompra = new bootstrap.Modal(document.querySelector('#modalCompra'))
+const modalError = new bootstrap.Modal(document.querySelector('#modalError'))
 const buscador = document.querySelector('#buscador')
 const filtro = document.querySelector('#filtro')
 const modalProductos = document.querySelector('#modalProductos')
@@ -348,6 +349,12 @@ botonVaciarCarrito.addEventListener('click', vaciarCarrito)
 //Función para comprar el carrito
 function comprarCarrito() {
   modal.hide()
+
+  //Verifico que el carrito no esté vacío
+  if (esteCarrito.length == 0) {
+    return modalError.show()
+  }
+
   modalCompra.show()
   vaciarCarrito()
 }
