@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tercer PreEntrega Proyecto JS</title>
+  <title>Proyecto Final - Javascript - CoderHouse</title>
 
   <!-- Bootstrap -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -22,20 +22,22 @@
 
 <body>
   <header class="title-container container-fluid">
-    <div class="d-flex justify-content-between">
+    <nav class="d-flex justify-content-between">
 
       <!-- Título -->
-      <h1 class="titulo">Carrito de Compras</h1>
+      <h1 class="titulo">Carrito</h1>
 
-      <!-- Botón Carrito -->
-      <button id="botonCarrito" type="button" class="btn btn-primary">
-        <i class="bi bi-cart4"></i>
-        <span class="badge text-bg-secondary" id="numeroCarrito">0</span>
-      </button>
-
-    </div>
-
-    <div class="d-flex justify-content-evenly">
+      <!-- Filtro de Productos -->
+      <div class="d-flex align-items-center">
+        <select id="filtro" class="btn btn-light">
+          <option value="" selected>Productos</option>
+          <option value="pantallas">Pantallas</option>
+          <option value="equipos">Equipos</option>
+          <option value="hogar">Hogar</option>
+          <option value="perifericos">Periféricos</option>
+          <option value="complementos">Complementos</option>
+        </select>
+      </div>
 
       <!-- Buscador -->
       <nav class="navbar">
@@ -46,21 +48,13 @@
         </div>
       </nav>
 
-      <!-- Filtro de Productos -->
-      <div class="d-flex justify-content-between align-items-center">
-        <label class="form-control w-auto bg-primary border-primary" for="filtro">Filtrar</label>
-        <select id="filtro" class="form-select">
-          <option value="" selected>Seleccione una opción</option>
-          <option value="pantallas">Pantallas</option>
-          <option value="equipos">Equipos</option>
-          <option value="hogar">Hogar</option>
-          <option value="perifericos">Periféricos</option>
-          <option value="complementos">Complementos</option>
-        </select>
-      </div>
+      <!-- Botón Carrito -->
+      <button id="botonCarrito" type="button" class="btn btn-primary">
+        <i class="bi bi-cart4"></i>
+        <span class="badge text-bg-secondary" id="numeroCarrito">0</span>
+      </button>
 
-    </div>
-
+    </nav>
   </header>
 
 
@@ -70,7 +64,7 @@
   </main>
 
 
-  <footer>Tercer PreEntrega - JS - CodeHouse</footer>
+  <footer>Proyecto Final - JS - CodeHouse</footer>
 
 
   <!-- Modal Carrito -->
