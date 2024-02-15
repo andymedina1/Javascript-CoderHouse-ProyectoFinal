@@ -14,21 +14,14 @@ const numeroCarrito = document.querySelector('#numeroCarrito')
 const botonVaciarCarrito = document.querySelector('#vaciarCarrito')
 const botonComprarCarrito = document.querySelector('#comprarCarrito')
 
-/*    Información   */
+/*    Productos desde JSON   */
 
-const baseDeDatos = [
-  { id: 0, nombre: 'Tv', precio: 8463, categoria: 'pantallas', cantidad: 1, img: 'img/tv.jpg' },
-  { id: 1, nombre: 'Monitor', precio: 3387, categoria: 'pantallas', cantidad: 1, img: 'img/monitor.jpg' },
-  { id: 2, nombre: 'Notebook', precio: 4390, categoria: 'equipos', cantidad: 1, img: 'img/notebook.jpg' },
-  { id: 3, nombre: 'Licuadora', precio: 3869, categoria: 'hogar', cantidad: 1, img: 'img/licuadora.jpg' },
-  { id: 4, nombre: 'Heladera', precio: 4391, categoria: 'hogar', cantidad: 1, img: 'img/heladera.jpg' },
-  { id: 5, nombre: 'Teclado', precio: 6400, categoria: 'perifericos', cantidad: 1, img: 'img/teclado.jpg' },
-  { id: 6, nombre: 'Mouse', precio: 976, categoria: 'perifericos', cantidad: 1, img: 'img/mouse.jpg' },
-  { id: 7, nombre: 'Auriculares', precio: 337, categoria: 'perifericos', cantidad: 1, img: 'img/auriculares.jpg' },
-  { id: 8, nombre: 'Procesador', precio: 2643, categoria: 'complementos', cantidad: 1, img: 'img/procesador.jpg' },
-  { id: 9, nombre: 'Memoria', precio: 6743, categoria: 'complementos', cantidad: 1, img: 'img/memoria.jpg' }
-]
-
+let baseDeDatos
+async function fetchDataRender() {
+  const response = await fetch("./productos.json")
+  baseDeDatos = await response.json()
+  renderProducts(baseDeDatos)
+}
 
 /*    Funciones   */
 
@@ -188,8 +181,8 @@ botonComprarCarrito.addEventListener('click', comprarCarrito)
 
 /*    Inicialización   */
 
-// Primero muestro todos los productos
-renderProducts(baseDeDatos)
+// Obtengo los productos desde el JSON y los renderizo
+fetchDataRender()
 
 // Obtengo el carrito anterior o inicializo uno vacío
 let esteCarrito = JSON.parse(localStorage.getItem('carrito')) || []
