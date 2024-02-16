@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body>
-  <header class="title-container container-fluid">
-    <nav class="d-flex justify-content-between">
+<body class="body">
+  <header class="header container-fluid">
+    <nav class="navbar d-flex justify-content-between">
 
       <!-- Título -->
-      <h1 class="titulo">Carrito</h1>
+      <h1 class="navbar__titulo">Carrito</h1>
 
       <!-- Filtro de Productos -->
       <div class="d-flex align-items-center">
@@ -49,9 +49,9 @@
       </nav>
 
       <!-- Botón Carrito -->
-      <button id="botonCarrito" type="button" class="btn btn-primary">
+      <button id="botonCarrito" type="button" class="button btn btn-primary">
         <i class="bi bi-cart4"></i>
-        <span class="badge text-bg-secondary" id="numeroCarrito">0</span>
+        <span class="span badge text-bg-secondary" id="numeroCarrito">0</span>
       </button>
 
     </nav>
@@ -64,7 +64,7 @@
   </main>
 
 
-  <footer>Proyecto Final - JS - CodeHouse</footer>
+  <footer class="footer">Proyecto Final - JS - CodeHouse</footer>
 
 
   <!-- Modal Carrito -->
@@ -73,7 +73,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="staticBackdropLabel">Carrito de Compras</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <button type="button" class="button btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <table class="table table-borderless">

@@ -1,4 +1,4 @@
-body {
+.body {
   background: linear-gradient(to bottom right, #55566a, #282834);
   min-height: 100vh;
   height: 100%;
@@ -8,7 +8,7 @@ body {
   align-items: center;
 }
 
-footer {
+.footer {
   background-color: black;
   color: white;
   text-align: center;
@@ -17,21 +17,17 @@ footer {
   min-height: 1.5em;
 }
 
-/* .navbar {
-  background-color: transparent !important; 
-} */
-
-button {
+.button {
   height: 50%;
   margin: 2em;
 }
 
 /* Solución al error de los botones*/
-span {
+.span {
   pointer-events: none;
 }
 
-.titulo {
+.navbar__titulo {
   color: lightsteelblue;
   font-family: sans-serif;
   font-size: 4em;
@@ -39,21 +35,6 @@ span {
   line-height: 0.8em;
   text-shadow: 4px 4px 0px #2a2e30;
   margin: 0.2em;
-}
-
-/* Por ahora no tengo elementos H2 */
-/* h2 {
-  color: rgb(186, 216, 255);
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 1.8em;
-  font-weight: 500;
-  line-height: 1em;
-  margin: 0.2em;
-} */
-
-p {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  line-height: 0.5em;
 }
 
 .middle-container {
@@ -79,7 +60,7 @@ p {
   justify-content: center;
 }
 
-.tarjeta-producto {
+.producto {
   flex: 3;
   display: flex;
   flex-direction: column;
@@ -87,20 +68,20 @@ p {
   justify-content: space-between;
 }
 
-.tarjeta-boton {
-  flex: 1;
-}
-
-.tarjeta-precio {
+.producto__precio {
   padding-top: 1em;
 }
 
-h4 {
+.producto__titulo {
   color: black;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 1.8em;
   font-weight: 500;
   margin: 0.2em;
+}
+
+.boton-tarjeta {
+  flex: 1;
 }
 
 .borderless {
