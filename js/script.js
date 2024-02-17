@@ -180,7 +180,11 @@ botonComprarCarrito.addEventListener('click', comprarCarrito)
 
 
 
-/*    Inicialización   */
+
+/*
+
+
+//    Inicialización   
 
 // Obtengo los productos desde el JSON y los renderizo
 fetchDataRender()
@@ -190,3 +194,8 @@ let esteCarrito = JSON.parse(localStorage.getItem('carrito')) || []
 
 // Actualizo el número del carrito
 cartNumber()
+
+
+
+
+*/
