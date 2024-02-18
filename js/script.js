@@ -13,6 +13,8 @@ const modalTotal = document.querySelector('#modalTotal')
 const numeroCarrito = document.querySelector('#numeroCarrito')
 const botonVaciarCarrito = document.querySelector('#vaciarCarrito')
 const botonComprarCarrito = document.querySelector('#comprarCarrito')
+const carritoProductos = document.querySelector('#carritoProductos')
+const carritoTotal = document.querySelector('#carritoTotal')
 
 /*    Productos desde JSON   */
 
@@ -83,6 +85,16 @@ function agregarProducto(btn) {
 
   // Actualizo el badge
   cartNumber()
+
+  // Actualizo el nuevo carrito
+  if (carritoVisible()) {
+    //si el carro está abierto lo cierro para cargar los datos
+    document.getElementById('nuevo-carrito').classList.remove('mostrar');
+    newFillCart()
+  } else {
+    //si el carro está cerrado solo cargo los datos
+    newFillCart()
+  }
 }
 
 // Función para cargar los productos en el carrito
@@ -158,19 +170,7 @@ filtro.addEventListener('input', (e) => {
   renderProducts(resultado)
 })
 
-// Botón para mostrar el Carrito
-botonAbrirCarrito.addEventListener('click', () => {
-  fillCart()
 
-  // Si el carrito está vacío, deshabilito el botón para vaciar
-  if (esteCarrito.length == 0) {
-    botonVaciarCarrito.setAttribute("disabled", "")
-  } else {
-    botonVaciarCarrito.removeAttribute("disabled")
-  }
-
-  modal.show()
-})
 
 // Botón para vaciar el carrito
 botonVaciarCarrito.addEventListener('click', vaciarCarrito)
@@ -198,6 +198,24 @@ cartNumber()
 
 
 
+/* función para abrir el viejo Carrito */
+/*
+
+// Botón para mostrar el Carrito
+botonAbrirCarrito.addEventListener('click', () => {
+  fillCart()
+
+  // Si el carrito está vacío, deshabilito el botón para vaciar
+  if (esteCarrito.length == 0) {
+    botonVaciarCarrito.setAttribute("disabled", "")
+  } else {
+    botonVaciarCarrito.removeAttribute("disabled")
+  }
+
+  modal.show()
+})
+
+*/
 
 
 
@@ -205,6 +223,59 @@ cartNumber()
 
 /* Función para abrir y cerrar nuevo carrito */
 
-botonAbrirCarrito.addEventListener('click', function () {
+botonAbrirCarrito.addEventListener('click', abrirNuevoCarrito);
+
+function abrirNuevoCarrito() {
+  newFillCart()
   document.getElementById('nuevo-carrito').classList.toggle('mostrar');
-});
+
+}
+
+// función para llenar el carrito de productos
+
+function newFillCart() {
+  carritoProductos.innerHTML = ''
+  let totalFinal = 0
+  const productosCarrito = JSON.parse(localStorage.getItem('carrito'))
+  productosCarrito.forEach(producto => {
+    carritoProductos.innerHTML += /* html */
+      `
+      <div class="nuevo-carrito__producto">
+        <div class="nuevo-carrito__producto-cabecera">
+          <p class="nuevo-carrito__producto-cabecera-nombre">${producto.nombre}</p>
+          <button><i class="nuevo-carrito__producto-cabecera-eliminar bi bi-x"></i></button>
+        </div>
+
+        <div class="nuevo-carrito__producto-cuerpo">
+
+          <img class="nuevo-carrito__producto-cuerpo-imagen" src="${producto.img}" alt="">
+
+          <div class="nuevo-carrito__producto-cuerpo-botones">
+            <button><i class="nuevo-carrito__producto-cuerpo-botones-aumentar bi bi-plus"></i></button>
+            <button><i class="nuevo-carrito__producto-cuerpo-botones-disminuir bi bi-dash"></i></button>
+          </div>
+
+          <p class="nuevo-carrito__producto-cuerpo-cantidad">${producto.cantidad}</p>
+        </div>
+  
+      </div>
+      
+      `
+    totalFinal += (producto.cantidad * producto.precio)
+  })
+  carritoTotal.innerHTML = ''
+  carritoTotal.innerHTML += `Total: $${totalFinal}`
+}
+
+
+
+
+
+
+
+// Condición para saber si el carrito está visible o no
+
+let carritoVisible = () => document.getElementById('nuevo-carrito').classList.value.includes('mostrar')
+
+
+
