@@ -1,3 +1,5 @@
+/* Estilos generales */
+
 .body {
   background: linear-gradient(to bottom right, #55566a, #282834);
   min-height: 100vh;
@@ -22,7 +24,7 @@
   margin: 2em;
 }
 
-/* Solución al error de los botones*/
+/* Solución al error de los botones */
 .span {
   pointer-events: none;
 }
@@ -97,29 +99,11 @@
   font-style: normal;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Estilos específicos del nuevo carrito */
 
 .nuevo-carrito {
   width: 400px;
+  height: 100vh;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -127,53 +111,69 @@
   padding: 2em 0;
 }
 
-.contenedor {
-  width: 80%;
-}
-
-.nuevo-carrito-cabecera {
+.nuevo-carrito__contenedor {
+  height: 100%;
   display: flex;
-  justify-content: space-between;
-  background-color: green;
+  flex-direction: column;
 }
 
+.nuevo-carrito__cabecera {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 2px solid black;
+  margin-bottom: 1em;
+}
 
-.nuevo-carrito-productos-producto {
+.nuevo-carrito__cabecera-titulo {
+  color: black;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1.8em;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+
+.nuevo-carrito__productos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  overflow-x: hidden;
+}
+
+.nuevo-carrito__producto {
   text-align: center;
   background-color: white;
   border: 2px solid black;
   padding: 1em;
   border-radius: 10px;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
 }
 
-.nuevo-carrito-productos-producto-cabecera {
+.nuevo-carrito__producto-cabecera {
   width: 100%;
   display: flex;
   justify-content: space-between;
 }
 
-.nuevo-carrito-productos-producto-cabecera-nombre {
-  color: black;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 1.8em;
-  font-weight: 500;
-  margin: 0.2em;
+.nuevo-carrito__producto-cabecera-nombre {
+  font-size: 1.2em;
+  font-family: sans-serif;
+  margin: 1rem;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.nuevo-carrito-productos-producto-cabecera-eliminar{
+.nuevo-carrito__producto-cabecera-eliminar {
   font-size: 1.5em;
 }
 
-.nuevo-carrito-productos-producto-cuerpo {
+.nuevo-carrito__producto-cuerpo {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.nuevo-carrito-productos-producto-cuerpo-botones {
+.nuevo-carrito__producto-cuerpo-botones {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -181,7 +181,7 @@
   margin-left: 1em;
 }
 
-.nuevo-carrito-productos-producto-cuerpo-cantidad {
+.nuevo-carrito__producto-cuerpo-cantidad {
   color: black;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 1.8em;
@@ -189,7 +189,19 @@
   padding: 1.5em 1em 1em;
 }
 
-.nuevo-carrito-compra {
-  display: flex;
+.nuevo-carrito__compra {
+  border-radius: 10px;
+  border: 2px solid black;
+  margin-top: 1em;
   background-color: pink;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1em;
+}
+
+.nuevo-carrito__compra-precio {
+  font-size: 1.2em;
+  font-family: sans-serif;
+  font-weight: 600;
 }
