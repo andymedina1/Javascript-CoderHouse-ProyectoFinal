@@ -253,7 +253,7 @@ function newFillCart() {
       <div class="nuevo-carrito__producto">
         <div class="nuevo-carrito__producto-cabecera">
           <p class="nuevo-carrito__producto-cabecera-nombre">${producto.nombre}</p>
-          <button><i class="nuevo-carrito__producto-cabecera-eliminar bi bi-x"></i></button>
+          <button class="nuevo-carrito__producto-cabecera-eliminar" productid='${producto.id}'><i class="nuevo-carrito__producto-cabecera-eliminar bi bi-x"></i></button>
         </div>
 
         <div class="nuevo-carrito__producto-cuerpo">
@@ -300,25 +300,66 @@ function modificarCarrito(evt) {
 
   // si el click fue en el botón para eliminar
   if (evt.target.classList.contains('nuevo-carrito__producto-cabecera-eliminar')) {
-    //función eliminar
+    eliminarProducto(evt)//función eliminar
   }
 
 
   // si el click fue en el botón +
   if (evt.target.classList.contains('nuevo-carrito__producto-cuerpo-botones-aumentar')) {
-    aumentarCarrito(evt)  // llamo función aumentar
+    aumentarProducto(evt)  // llamo función aumentar
   }
 
 
   // si el click fue en el botón -
   if (evt.target.classList.contains('nuevo-carrito__producto-cuerpo-botones-disminuir')) {
-    disminuirCarrito(evt)  // llamo función disminuir
+    disminuirProducto(evt)  // llamo función disminuir
   }
 
 
 }
 
-function aumentarCarrito(evt) {
+function eliminarProducto(evt) {
+  //obtengo el id del producto del carrito
+  const botonId = evt.target.getAttribute('productid')
+
+
+  //con ese id obtengo el indice del objeto en la base
+  const index = baseDeDatos.findIndex(producto => producto.id == botonId)
+
+
+  //con ese indice obtengo el objeto de la base
+  const productoSeleccionado = baseDeDatos[index]
+
+
+  //obtengo el indice de este objeto en el carrito actual
+  const indexCarrito = esteCarrito.findIndex(prod => prod.id == productoSeleccionado.id)
+
+  
+  // elimino el producto
+  esteCarrito.splice(indexCarrito, 1)
+
+
+
+
+  // Guardo el carrito
+  localStorage.setItem('carrito', JSON.stringify(esteCarrito))
+
+  // Actualizo el badge
+  cartNumber()
+
+  // Actualizo el nuevo carrito
+  if (carritoVisible()) {
+    // si el carro está abierto lo cierro para cargar los datos
+    document.getElementById('nuevo-carrito').classList.remove('mostrar')
+    setTimeout(() => newFillCart(), 1000) // timeout para esperar animación
+  } else {
+    // si el carro está cerrado solo cargo los datos
+    newFillCart()
+  }
+
+}
+
+function aumentarProducto(evt) {
   //obtengo el id del producto del carrito
   const botonId = evt.target.getAttribute('productid')
 
@@ -360,7 +401,7 @@ function aumentarCarrito(evt) {
 
 }
 
-function disminuirCarrito(evt) {
+function disminuirProducto(evt) {
   //obtengo el id del producto del carrito
   const botonId = evt.target.getAttribute('productid')
 
