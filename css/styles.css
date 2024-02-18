@@ -33,7 +33,7 @@
 }
 
 /* Solución al error de los botones */
-.span {
+span {
   pointer-events: none;
 }
 
