@@ -88,11 +88,11 @@ function agregarProducto(btn) {
 
   // Actualizo el nuevo carrito
   if (carritoVisible()) {
-    //si el carro está abierto lo cierro para cargar los datos
-    document.getElementById('nuevo-carrito').classList.remove('mostrar');
-    newFillCart()
+    // si el carro está abierto lo cierro para cargar los datos
+    document.getElementById('nuevo-carrito').classList.remove('mostrar')
+    setTimeout(() => newFillCart(), 1000) // timeout para esperar animación
   } else {
-    //si el carro está cerrado solo cargo los datos
+    // si el carro está cerrado solo cargo los datos
     newFillCart()
   }
 }
@@ -132,12 +132,12 @@ function vaciarCarrito() {
   esteCarrito = []
   localStorage.setItem('carrito', JSON.stringify([]))
   numeroCarrito.innerHTML = 0
-  modal.hide()
+  document.getElementById('nuevo-carrito').classList.remove('mostrar')
 }
 
 // Función para comprar el carrito
 function comprarCarrito() {
-  modal.hide()
+  document.getElementById('nuevo-carrito').classList.remove('mostrar')
 
   // Verifico que el carrito no esté vacío
   if (esteCarrito.length == 0) {
@@ -226,7 +226,17 @@ botonAbrirCarrito.addEventListener('click', () => {
 botonAbrirCarrito.addEventListener('click', abrirNuevoCarrito);
 
 function abrirNuevoCarrito() {
+  // Primero cargo los datos en el carrito
   newFillCart()
+
+  // Si el carrito está vacío, deshabilito el botón para vaciar
+  if (esteCarrito.length == 0) {
+    botonVaciarCarrito.setAttribute("disabled", "")
+  } else {
+    botonVaciarCarrito.removeAttribute("disabled")
+  }
+
+  // Muestro el carrito en pantalla
   document.getElementById('nuevo-carrito').classList.toggle('mostrar');
 
 }

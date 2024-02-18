@@ -66,73 +66,17 @@
         </div>
   
         <div class="nuevo-carrito__productos" id="carritoProductos">
-  
-          <div class="nuevo-carrito__producto">
-  
-            <div class="nuevo-carrito__producto-cabecera">
-              <p class="nuevo-carrito__producto-cabecera-nombre">Producto</p>
-              <button><i class="nuevo-carrito__producto-cabecera-eliminar bi bi-x"></i></button>
-            </div>
-  
-            <div class="nuevo-carrito__producto-cuerpo">
-  
-              <img class="nuevo-carrito__producto-cuerpo-imagen" src="img/monitor.jpg" alt="">
-  
-              <div class="nuevo-carrito__producto-cuerpo-botones">
-                <button><i class="nuevo-carrito__producto-cuerpo-botones-aumentar bi bi-plus"></i></button>
-                <button><i class="nuevo-carrito__producto-cuerpo-botones-disminuir bi bi-dash"></i></button>
-              </div>
-  
-              <p class="nuevo-carrito__producto-cuerpo-cantidad">10</p>
-            </div>
-  
-          </div>
-          <div class="nuevo-carrito__producto">
-  
-            <div class="nuevo-carrito__producto-cabecera">
-              <p class="nuevo-carrito__producto-cabecera-nombre">Producto</p>
-              <button><i class="nuevo-carrito__producto-cabecera-eliminar bi bi-x"></i></button>
-            </div>
-  
-            <div class="nuevo-carrito__producto-cuerpo">
-  
-              <img class="nuevo-carrito__producto-cuerpo-imagen" src="img/monitor.jpg" alt="">
-  
-              <div class="nuevo-carrito__producto-cuerpo-botones">
-                <button><i class="nuevo-carrito__producto-cuerpo-botones-aumentar bi bi-plus"></i></button>
-                <button><i class="nuevo-carrito__producto-cuerpo-botones-disminuir bi bi-dash"></i></button>
-              </div>
-  
-              <p class="nuevo-carrito__producto-cuerpo-cantidad">10</p>
-            </div>
-  
-          </div>
-          <div class="nuevo-carrito__producto">
-  
-            <div class="nuevo-carrito__producto-cabecera">
-              <p class="nuevo-carrito__producto-cabecera-nombre">Producto</p>
-              <button><i class="nuevo-carrito__producto-cabecera-eliminar bi bi-x"></i></button>
-            </div>
-  
-            <div class="nuevo-carrito__producto-cuerpo">
-  
-              <img class="nuevo-carrito__producto-cuerpo-imagen" src="img/monitor.jpg" alt="">
-  
-              <div class="nuevo-carrito__producto-cuerpo-botones">
-                <button><i class="nuevo-carrito__producto-cuerpo-botones-aumentar bi bi-plus"></i></button>
-                <button><i class="nuevo-carrito__producto-cuerpo-botones-disminuir bi bi-dash"></i></button>
-              </div>
-  
-              <p class="nuevo-carrito__producto-cuerpo-cantidad">10</p>
-            </div>
-  
-          </div>
-  
+
+          <!-- Esto se llena con un Fetch al JSON -->
+
         </div>
   
         <div class="nuevo-carrito__compra">
           <p class="nuevo-carrito__compra-precio" id="carritoTotal">Total $1000</p>
-          <button class="nuevo-carrito__compra-boton btn btn-success">Comprar carrito</button>
+          <div class="nuevo-carrito__compra-botonera">
+            <button class="nuevo-carrito__compra-boton btn btn-success" id="comprarCarrito">Comprar carrito</button>
+            <button class="nuevo-carrito__compra-boton btn btn-danger" id="vaciarCarrito">Vaciar carrito</button>
+          </div>
         </div>
   
       </div>
@@ -148,7 +92,8 @@
   <footer class="footer">Proyecto Final - JS - CodeHouse</footer>
 
 
-  <!-- Modal Carrito -->
+
+  <!--  Modal Carrito VIEJO -->
   <div class="modal fade" id="miModal">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -178,13 +123,15 @@
             <h5 id="modalTotal">Total: $0</h5>
           </div>
           <div class="modal-footer borderless">
-            <button type="button" class="btn btn-secondary" id="vaciarCarrito">Vaciar Carrito</button>
-            <button id="comprarCarrito" type="button" class="btn btn-primary">Comprar!</button>
+            <button type="button" class="btn btn-secondary">Vaciar Carrito</button>
+            <button type="button" class="btn btn-primary">Comprar!</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+ 
+
 
   <!-- Modal Compra -->
   <div class="modal fade" id="modalCompra">
