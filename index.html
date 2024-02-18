@@ -21,32 +21,26 @@
 </head>
 
 <body class="body">
-  <header class="header container-fluid">
-    <nav class="navbar d-flex justify-content-between">
+  <header class="header">
+    <nav class="navbar-principal">
 
       <!-- Título -->
-      <h1 class="navbar__titulo">Carrito</h1>
+      <h1 class="navbar__titulo">Tienda</h1>
 
       <!-- Filtro de Productos -->
-      <div class="d-flex align-items-center">
-        <select id="filtro" class="btn btn-light">
-          <option value="" selected>Productos</option>
-          <option value="pantallas">Pantallas</option>
-          <option value="equipos">Equipos</option>
-          <option value="hogar">Hogar</option>
-          <option value="perifericos">Periféricos</option>
-          <option value="complementos">Complementos</option>
-        </select>
-      </div>
+      <select id="filtro" class="navbar__filtro btn btn-light">
+        <option value="" selected>Productos</option>
+        <option value="pantallas">Pantallas</option>
+        <option value="equipos">Equipos</option>
+        <option value="hogar">Hogar</option>
+        <option value="perifericos">Periféricos</option>
+        <option value="complementos">Complementos</option>
+      </select>
 
       <!-- Buscador -->
-      <nav class="navbar">
-        <div class="container-fluid">
-          <form class="d-flex" role="search">
-            <input id="buscador" class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
-          </form>
-        </div>
-      </nav>
+      <form class="navbar__buscador" role="search">
+        <input id="buscador" class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+      </form>
 
       <!-- Botón Carrito -->
       <button id="botonCarrito" type="button" class="button btn btn-primary">
@@ -57,93 +51,92 @@
     </nav>
   </header>
 
-
+  
   <main class="middle-container" id="middleContainer">
 
 
     <!-- Armando carrito     -->
 
-
     <div class="nuevo-carrito">
 
       <div class="nuevo-carrito__contenedor">
-
+  
         <div class="nuevo-carrito__cabecera">
           <p class="nuevo-carrito__cabecera-titulo">Carrito</p>
         </div>
-
+  
         <div class="nuevo-carrito__productos">
-
+  
           <div class="nuevo-carrito__producto">
-
+  
             <div class="nuevo-carrito__producto-cabecera">
               <p class="nuevo-carrito__producto-cabecera-nombre">Producto</p>
               <button><i class="nuevo-carrito__producto-cabecera-eliminar bi bi-x"></i></button>
             </div>
-
+  
             <div class="nuevo-carrito__producto-cuerpo">
-
+  
               <img class="nuevo-carrito__producto-cuerpo-imagen" src="img/monitor.jpg" alt="">
-
+  
               <div class="nuevo-carrito__producto-cuerpo-botones">
                 <button><i class="nuevo-carrito__producto-cuerpo-botones-aumentar bi bi-plus"></i></button>
                 <button><i class="nuevo-carrito__producto-cuerpo-botones-disminuir bi bi-dash"></i></button>
               </div>
-
+  
               <p class="nuevo-carrito__producto-cuerpo-cantidad">10</p>
             </div>
-
+  
           </div>
           <div class="nuevo-carrito__producto">
-
+  
             <div class="nuevo-carrito__producto-cabecera">
               <p class="nuevo-carrito__producto-cabecera-nombre">Producto</p>
               <button><i class="nuevo-carrito__producto-cabecera-eliminar bi bi-x"></i></button>
             </div>
-
+  
             <div class="nuevo-carrito__producto-cuerpo">
-
+  
               <img class="nuevo-carrito__producto-cuerpo-imagen" src="img/monitor.jpg" alt="">
-
+  
               <div class="nuevo-carrito__producto-cuerpo-botones">
                 <button><i class="nuevo-carrito__producto-cuerpo-botones-aumentar bi bi-plus"></i></button>
                 <button><i class="nuevo-carrito__producto-cuerpo-botones-disminuir bi bi-dash"></i></button>
               </div>
-
+  
               <p class="nuevo-carrito__producto-cuerpo-cantidad">10</p>
             </div>
-
+  
           </div>
           <div class="nuevo-carrito__producto">
-
+  
             <div class="nuevo-carrito__producto-cabecera">
               <p class="nuevo-carrito__producto-cabecera-nombre">Producto</p>
               <button><i class="nuevo-carrito__producto-cabecera-eliminar bi bi-x"></i></button>
             </div>
-
+  
             <div class="nuevo-carrito__producto-cuerpo">
-
+  
               <img class="nuevo-carrito__producto-cuerpo-imagen" src="img/monitor.jpg" alt="">
-
+  
               <div class="nuevo-carrito__producto-cuerpo-botones">
                 <button><i class="nuevo-carrito__producto-cuerpo-botones-aumentar bi bi-plus"></i></button>
                 <button><i class="nuevo-carrito__producto-cuerpo-botones-disminuir bi bi-dash"></i></button>
               </div>
-
+  
               <p class="nuevo-carrito__producto-cuerpo-cantidad">10</p>
             </div>
-
+  
           </div>
-
+  
         </div>
-
+  
         <div class="nuevo-carrito__compra">
           <p class="nuevo-carrito__compra-precio">Total $1000</p>
           <button class="nuevo-carrito__compra-boton btn btn-success">Comprar carrito</button>
         </div>
-
+  
       </div>
-
+  
     </div>
 
 
