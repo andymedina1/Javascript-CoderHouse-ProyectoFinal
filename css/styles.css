@@ -130,8 +130,13 @@
   align-items: center;
   padding: 56px 0 16px;
   position: fixed;
-  right: 0;
   bottom: 0;
+  right: -400px;
+  transition: right 0.5s ease;
+}
+
+.mostrar {
+  right: 0;
 }
 
 .nuevo-carrito__contenedor {

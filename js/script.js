@@ -199,3 +199,12 @@ cartNumber()
 
 
 */
+
+
+
+
+/* Función para abrir y cerrar nuevo carrito */
+
+botonAbrirCarrito.addEventListener('click', function () {
+  document.getElementById('nuevo-carrito').classList.toggle('mostrar');
+});
