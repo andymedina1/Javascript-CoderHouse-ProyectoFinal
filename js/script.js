@@ -181,7 +181,7 @@ botonComprarCarrito.addEventListener('click', comprarCarrito)
 
 
 
-/*
+
 
 
 //    Inicialización   
@@ -198,7 +198,7 @@ cartNumber()
 
 
 
-*/
+
 
 
 

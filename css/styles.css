@@ -12,9 +12,10 @@
 
 .header {
   width: 100%;
+  position: fixed;
   height: 50px;
   background-color: #282834;
-  z-index: 5;
+  z-index: 10;
 }
 
 .footer {
@@ -39,7 +40,6 @@
 .navbar-principal {
   display: flex;
   width: 100vw;
-  position: fixed;
   align-items: center;
   justify-content: space-between;
   height: 50px;
@@ -60,13 +60,18 @@
   display: flex;
 }
 
-.middle-container {
+.main {
   width: 98vw;
+  flex: 1;
+  padding: 1em 0;
+  margin-top: 50px;
+}
+
+.middle-container {
   display: flex;
   flex-wrap: wrap;
   gap: 1em;
   justify-content: space-evenly;
-  flex: 1;
 }
 
 .borderless {
@@ -128,11 +133,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 56px 0 16px;
+  margin-top: 50px;
+  padding: 66px 0 16px;
   position: fixed;
   bottom: 0;
   right: -400px;
   transition: right 0.5s ease;
+  z-index: 5;
 }
 
 .mostrar {
