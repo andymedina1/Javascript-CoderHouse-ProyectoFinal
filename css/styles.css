@@ -27,11 +27,6 @@
   min-height: 1.5em;
 }
 
-.button {
-  height: 50%;
-  margin: 2em;
-}
-
 /* Solución al error de los botones */
 span {
   pointer-events: none;
@@ -58,6 +53,10 @@ span {
 
 .navbar__buscador {
   display: flex;
+}
+
+.navbar__boton {
+  margin: 0 2em;
 }
 
 .main {
@@ -120,9 +119,6 @@ span {
   line-height: normal;
 }
 
-.producto__boton {
-  font-style: normal;
-}
 
 /* Estilos específicos del nuevo carrito */
 
