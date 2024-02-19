@@ -36,7 +36,7 @@ function agregarEventListeners() {
   filtro.addEventListener('input', evt => filtrarProductos(evt))
 
   // Botón para abrir-cerrar carrito
-  botonAbrirCarrito.addEventListener('click', abrirNuevoCarrito);
+  botonAbrirCarrito.addEventListener('click', mostrarCarrito);
 
   // Botón para comprar el carrito
   botonComprarCarrito.addEventListener('click', comprarCarrito)
@@ -93,12 +93,12 @@ function agregarProducto(btn) {
   const botonId = btn.target.id
   const index = baseDeDatos.findIndex(producto => producto.id == botonId)
   const productoSeleccionado = baseDeDatos[index]
+  const productoEnCarrito = esteCarrito.find(prod => prod.id == productoSeleccionado.id)
 
   // Verifico si el producto está en el carrito
-  if (esteCarrito.some(prod => prod.id == productoSeleccionado.id)) {
+  if (productoEnCarrito) {
     // Si el producto ya está en el carrito, solo aumento la cantidad
-    const indexCarrito = esteCarrito.findIndex(prod => prod.id == productoSeleccionado.id)
-    esteCarrito[indexCarrito].cantidad += 1
+    productoEnCarrito.cantidad += 1
   } else {
     // Si el producto NO está en el carrito, añado el nuevo producto
     esteCarrito.push({ ...baseDeDatos[index] })
@@ -108,16 +108,16 @@ function agregarProducto(btn) {
   localStorage.setItem('carrito', JSON.stringify(esteCarrito))
 
   // Actualizo el badge
-  cartNumber()
+  actualizarNumeroCarrito()
 
   // Actualizo el nuevo carrito
   if (carritoVisible()) {
     // si el carro está abierto lo cierro para cargar los datos
     document.getElementById('nuevo-carrito').classList.remove('mostrar')
-    setTimeout(() => newFillCart(), 1000) // timeout para esperar animación
+    setTimeout(() => actualizarCarrito(), 1000) // timeout para esperar animación
   } else {
     // si el carro está cerrado solo cargo los datos
-    newFillCart()
+    actualizarCarrito()
   }
 
   // Muestro un Toast de confirmación
@@ -138,12 +138,12 @@ function agregarProducto(btn) {
 }
 
 // Función para cambiar número del carrito
-function cartNumber() {
+function actualizarNumeroCarrito() {
   let count = 0
   const carrito = JSON.parse(localStorage.getItem('carrito'))
-  carrito.forEach(producto => {
-    count += producto.cantidad
-  })
+  if (carrito) {
+    carrito.forEach(producto => count += producto.cantidad)
+  }
   numeroCarrito.innerHTML = count
 }
 
@@ -204,9 +204,9 @@ function filtrarProductos(evt) {
 }
 
 /* Función para abrir y cerrar nuevo carrito */
-function abrirNuevoCarrito() {
+function mostrarCarrito() {
   // Primero cargo los datos en el carrito
-  newFillCart()
+  actualizarCarrito()
 
   // Si el carrito está vacío, deshabilito el botón para vaciar
   if (esteCarrito.length == 0) {
@@ -221,7 +221,7 @@ function abrirNuevoCarrito() {
 }
 
 // función para llenar el carrito de productos
-function newFillCart() {
+function actualizarCarrito() {
   carritoProductos.innerHTML = ''
   let totalFinal = 0
   const productosCarrito = JSON.parse(localStorage.getItem('carrito'))
@@ -324,16 +324,16 @@ function eliminarProducto(evt) {
   localStorage.setItem('carrito', JSON.stringify(esteCarrito))
 
   // Actualizo el badge
-  cartNumber()
+  actualizarNumeroCarrito()
 
   // Actualizo el nuevo carrito
   if (carritoVisible()) {
     // si el carro está abierto lo cierro para cargar los datos
     document.getElementById('nuevo-carrito').classList.remove('mostrar')
-    setTimeout(() => newFillCart(), 1000) // timeout para esperar animación
+    setTimeout(() => actualizarCarrito(), 1000) // timeout para esperar animación
   } else {
     // si el carro está cerrado solo cargo los datos
-    newFillCart()
+    actualizarCarrito()
   }
 
 }
@@ -367,16 +367,16 @@ function aumentarProducto(evt) {
   localStorage.setItem('carrito', JSON.stringify(esteCarrito))
 
   // Actualizo el badge
-  cartNumber()
+  actualizarNumeroCarrito()
 
   // Actualizo el nuevo carrito
   if (carritoVisible()) {
     // si el carro está abierto lo cierro para cargar los datos
     document.getElementById('nuevo-carrito').classList.remove('mostrar')
-    setTimeout(() => newFillCart(), 1000) // timeout para esperar animación
+    setTimeout(() => actualizarCarrito(), 1000) // timeout para esperar animación
   } else {
     // si el carro está cerrado solo cargo los datos
-    newFillCart()
+    actualizarCarrito()
   }
 
 }
@@ -416,16 +416,16 @@ function disminuirProducto(evt) {
   localStorage.setItem('carrito', JSON.stringify(esteCarrito))
 
   // Actualizo el badge
-  cartNumber()
+  actualizarNumeroCarrito()
 
   // Actualizo el nuevo carrito
   if (carritoVisible()) {
     // si el carro está abierto lo cierro para cargar los datos
     document.getElementById('nuevo-carrito').classList.remove('mostrar')
-    setTimeout(() => newFillCart(), 1000) // timeout para esperar animación
+    setTimeout(() => actualizarCarrito(), 1000) // timeout para esperar animación
   } else {
     // si el carro está cerrado solo cargo los datos
-    newFillCart()
+    actualizarCarrito()
   }
 
 }
@@ -439,7 +439,7 @@ function inicializar() {
   agregarEventListeners()
 
   // Actualizo el número del carrito
-  cartNumber()
+  actualizarNumeroCarrito()
 }
 
 
