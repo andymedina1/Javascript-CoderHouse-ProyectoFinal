@@ -124,12 +124,14 @@ function agregarProducto(btn) {
     duration: 2000,
     gravity: "bottom",
     position: "right",
+    stopOnFocus: false,
     style: {
       background: "rgb(85, 86, 106)",
       background: "radial-gradient(circle, rgba(85,86,106,1) 0%, rgba(85,86,106,1) 50%, rgba(40,40,52,1) 100%)",
       'font-family': "Verdana, sans-serif",
       border: '1px solid white',
-      'border-radius': '15px'
+      'border-radius': '15px',
+      cursor: 'default'
     }
   }).showToast();
 
