@@ -4,8 +4,6 @@
 const container = document.querySelector('#middleContainer')
 const botonAbrirCarrito = document.querySelector('#botonCarrito')
 const modal = new bootstrap.Modal(document.querySelector('#miModal'))
-const modalCompra = new bootstrap.Modal(document.querySelector('#modalCompra'))
-const modalError = new bootstrap.Modal(document.querySelector('#modalError'))
 const buscador = document.querySelector('#buscador')
 const filtro = document.querySelector('#filtro')
 const modalProductos = document.querySelector('#modalProductos')
@@ -157,10 +155,24 @@ function comprarCarrito() {
 
   // Verifico que el carrito no esté vacío
   if (esteCarrito.length == 0) {
-    return modalError.show()
+
+    // Si el carrito está vacío, muestro un error
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Su carrito está vacío",
+    });
+
+    return
   }
 
-  modalCompra.show()
+  // Muestro un alert confirmando la compra
+  Swal.fire({
+    title: "Compra Realizada!",
+    icon: "success"
+  });
+
+  // Limpio el carrito
   vaciarCarrito()
 }
 
