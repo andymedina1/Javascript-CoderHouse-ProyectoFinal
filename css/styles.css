@@ -28,7 +28,8 @@
 }
 
 /* Solución al error de los botones */
-span, i {
+span,
+i {
   pointer-events: none;
 }
 
@@ -166,11 +167,27 @@ span, i {
 }
 
 .nuevo-carrito__productos {
+  height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 0.5rem;
   padding: 0.5rem;
   overflow-x: hidden;
+}
+
+.nuevo-carrito__productos--carrito-vacio {
+  width: 80%;
+  margin: 1em 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.nuevo-carrito__productos--carrito-vacio-texto {
+  font-size: 1.2em;
+  font-family: sans-serif;
+  font-weight: 600;
 }
 
 .nuevo-carrito__producto {

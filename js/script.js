@@ -247,30 +247,49 @@ function newFillCart() {
   carritoProductos.innerHTML = ''
   let totalFinal = 0
   const productosCarrito = JSON.parse(localStorage.getItem('carrito'))
+
+
+  // Condición para verificar si el carrito está vacío
+  // Si el carrito está vacío, muestro un carrito vacío
+  if (productosCarrito.length === 0) {
+
+    carritoProductos.innerHTML = /* html */
+    `
+    <div class="nuevo-carrito__productos--carrito-vacio">
+      <img src="img/sad-cart.png" alt="Imágen carrito vacío">
+      <p class="nuevo-carrito__productos--carrito-vacio-texto">Tu carrito está vacío</p>
+    </div>
+    `
+
+    carritoTotal.innerHTML = ''
+    carritoTotal.innerHTML += `Carrito Vacío`
+    return
+  }
+
   productosCarrito.forEach(producto => {
     carritoProductos.innerHTML += /* html */
       `
-      <div class="nuevo-carrito__producto">
-        <div class="nuevo-carrito__producto-cabecera">
-          <p class="nuevo-carrito__producto-cabecera-nombre">${producto.nombre}</p>
-          <button class="nuevo-carrito__producto-cabecera-eliminar" productid='${producto.id}'><i class="nuevo-carrito__producto-cabecera-eliminar bi bi-x"></i></button>
-        </div>
-
-        <div class="nuevo-carrito__producto-cuerpo">
-
-          <img class="nuevo-carrito__producto-cuerpo-imagen" src="${producto.img}" alt="">
-
-          <div class="nuevo-carrito__producto-cuerpo-botones">
-            <button class="nuevo-carrito__producto-cuerpo-botones-aumentar" productid='${producto.id}'><i class="nuevo-carrito__producto-cuerpo-botones-aumentar bi bi-plus"></i></button>
-            <button class="nuevo-carrito__producto-cuerpo-botones-disminuir" productid='${producto.id}'><i class="nuevo-carrito__producto-cuerpo-botones-disminuir bi bi-dash" ></i></button>
+        <div class="nuevo-carrito__producto">
+          <div class="nuevo-carrito__producto-cabecera">
+            <p class="nuevo-carrito__producto-cabecera-nombre">${producto.nombre}</p>
+            <button class="nuevo-carrito__producto-cabecera-eliminar" productid='${producto.id}'><i class="nuevo-carrito__producto-cabecera-eliminar bi bi-x"></i></button>
           </div>
-
-          <p class="nuevo-carrito__producto-cuerpo-cantidad">${producto.cantidad}</p>
-        </div>
   
-      </div>
-      
-      `
+          <div class="nuevo-carrito__producto-cuerpo">
+  
+            <img class="nuevo-carrito__producto-cuerpo-imagen" src="${producto.img}" alt="">
+  
+            <div class="nuevo-carrito__producto-cuerpo-botones">
+              <button class="nuevo-carrito__producto-cuerpo-botones-aumentar" productid='${producto.id}'><i class="nuevo-carrito__producto-cuerpo-botones-aumentar bi bi-plus"></i></button>
+              <button class="nuevo-carrito__producto-cuerpo-botones-disminuir" productid='${producto.id}'><i class="nuevo-carrito__producto-cuerpo-botones-disminuir bi bi-dash" ></i></button>
+            </div>
+  
+            <p class="nuevo-carrito__producto-cuerpo-cantidad">${producto.cantidad}</p>
+          </div>
+    
+        </div>
+        
+        `
     totalFinal += (producto.cantidad * producto.precio)
   })
   carritoTotal.innerHTML = ''
@@ -334,7 +353,7 @@ function eliminarProducto(evt) {
   //obtengo el indice de este objeto en el carrito actual
   const indexCarrito = esteCarrito.findIndex(prod => prod.id == productoSeleccionado.id)
 
-  
+
   // elimino el producto
   esteCarrito.splice(indexCarrito, 1)
 
