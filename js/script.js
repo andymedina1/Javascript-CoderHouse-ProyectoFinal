@@ -107,17 +107,15 @@ function agregarProducto(btn) {
   // Guardo el carrito
   localStorage.setItem('carrito', JSON.stringify(esteCarrito))
 
-  // Actualizo el badge
+  // Actualizo el carrito y el badge
+  actualizarCarrito()
   actualizarNumeroCarrito()
 
-  // Actualizo el nuevo carrito
-  if (carritoVisible()) {
-    // si el carro está abierto lo cierro para cargar los datos
-    document.getElementById('nuevo-carrito').classList.remove('mostrar')
-    setTimeout(() => actualizarCarrito(), 1000) // timeout para esperar animación
+  // Si el carrito está vacío, deshabilito el botón para vaciar
+  if (esteCarrito.length == 0) {
+    botonVaciarCarrito.setAttribute("disabled", "")
   } else {
-    // si el carro está cerrado solo cargo los datos
-    actualizarCarrito()
+    botonVaciarCarrito.removeAttribute("disabled")
   }
 
   // Muestro un Toast de confirmación
@@ -149,12 +147,25 @@ function actualizarNumeroCarrito() {
 
 // Función para vaciar el carrito
 function vaciarCarrito() {
-  // Cierro el carrito
-  document.getElementById('nuevo-carrito').classList.remove('mostrar')
 
+  // Limpio el carrito
   esteCarrito = []
   localStorage.setItem('carrito', JSON.stringify([]))
   numeroCarrito.innerHTML = 0
+
+
+  // Actualizo el carrito y el badge
+  actualizarCarrito()
+  actualizarNumeroCarrito()
+
+
+  // Si el carrito está vacío, deshabilito el botón para vaciar
+  if (esteCarrito.length == 0) {
+    botonVaciarCarrito.setAttribute("disabled", "")
+  } else {
+    botonVaciarCarrito.removeAttribute("disabled")
+  }
+
 }
 
 // Función para comprar el carrito
@@ -318,22 +329,19 @@ function eliminarProducto(evt) {
   esteCarrito.splice(indexCarrito, 1)
 
 
-
-
   // Guardo el carrito
   localStorage.setItem('carrito', JSON.stringify(esteCarrito))
 
-  // Actualizo el badge
+  // Actualizo el carrito y el badge
+  actualizarCarrito()
   actualizarNumeroCarrito()
 
-  // Actualizo el nuevo carrito
-  if (carritoVisible()) {
-    // si el carro está abierto lo cierro para cargar los datos
-    document.getElementById('nuevo-carrito').classList.remove('mostrar')
-    setTimeout(() => actualizarCarrito(), 1000) // timeout para esperar animación
+
+  // Si el carrito está vacío, deshabilito el botón para vaciar
+  if (esteCarrito.length == 0) {
+    botonVaciarCarrito.setAttribute("disabled", "")
   } else {
-    // si el carro está cerrado solo cargo los datos
-    actualizarCarrito()
+    botonVaciarCarrito.removeAttribute("disabled")
   }
 
 }
@@ -359,25 +367,13 @@ function aumentarProducto(evt) {
   esteCarrito[indexCarrito].cantidad += 1
 
 
-
-
-
-
   // Guardo el carrito
   localStorage.setItem('carrito', JSON.stringify(esteCarrito))
 
-  // Actualizo el badge
-  actualizarNumeroCarrito()
 
-  // Actualizo el nuevo carrito
-  if (carritoVisible()) {
-    // si el carro está abierto lo cierro para cargar los datos
-    document.getElementById('nuevo-carrito').classList.remove('mostrar')
-    setTimeout(() => actualizarCarrito(), 1000) // timeout para esperar animación
-  } else {
-    // si el carro está cerrado solo cargo los datos
-    actualizarCarrito()
-  }
+  // Actualizo el carrito y el badge
+  actualizarCarrito()
+  actualizarNumeroCarrito()
 
 }
 
@@ -409,23 +405,19 @@ function disminuirProducto(evt) {
   }
 
 
-
-
-
   // Guardo el carrito
   localStorage.setItem('carrito', JSON.stringify(esteCarrito))
 
-  // Actualizo el badge
+  // Actualizo el carrito y el badge
+  actualizarCarrito()
   actualizarNumeroCarrito()
 
-  // Actualizo el nuevo carrito
-  if (carritoVisible()) {
-    // si el carro está abierto lo cierro para cargar los datos
-    document.getElementById('nuevo-carrito').classList.remove('mostrar')
-    setTimeout(() => actualizarCarrito(), 1000) // timeout para esperar animación
+
+  // Si el carrito está vacío, deshabilito el botón para vaciar
+  if (esteCarrito.length == 0) {
+    botonVaciarCarrito.setAttribute("disabled", "")
   } else {
-    // si el carro está cerrado solo cargo los datos
-    actualizarCarrito()
+    botonVaciarCarrito.removeAttribute("disabled")
   }
 
 }
