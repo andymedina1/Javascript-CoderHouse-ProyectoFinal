@@ -95,6 +95,22 @@ function agregarProducto(btn) {
     // si el carro está cerrado solo cargo los datos
     newFillCart()
   }
+
+  // Muestro un Toast de confirmación
+  Toastify({
+    text: "Agredado al carrito",
+    duration: 2000,
+    gravity: "bottom",
+    position: "right",
+    style: {
+      background: "rgb(85, 86, 106)",
+      background: "radial-gradient(circle, rgba(85,86,106,1) 0%, rgba(85,86,106,1) 50%, rgba(40,40,52,1) 100%)",
+      'font-family': "Verdana, sans-serif",
+      border: '1px solid white',
+      'border-radius': '15px'
+    }
+  }).showToast();
+  
 }
 
 // Función para cargar los productos en el carrito
@@ -254,7 +270,7 @@ function newFillCart() {
   if (productosCarrito.length === 0) {
 
     carritoProductos.innerHTML = /* html */
-    `
+      `
     <div class="nuevo-carrito__productos--carrito-vacio">
       <img src="img/sad-cart.png" alt="Imágen carrito vacío">
       <p class="nuevo-carrito__productos--carrito-vacio-texto">Tu carrito está vacío</p>
