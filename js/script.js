@@ -1,6 +1,4 @@
-
 /*    Elementos del DOM   */
-
 const container = document.querySelector('#middleContainer')
 const botonAbrirCarrito = document.querySelector('#botonCarrito')
 const buscador = document.querySelector('#buscador')
@@ -11,14 +9,45 @@ const botonComprarCarrito = document.querySelector('#comprarCarrito')
 const carritoProductos = document.querySelector('#carritoProductos')
 const carritoTotal = document.querySelector('#carritoTotal')
 
-/*    Productos desde JSON   */
+/* Variables Globales */
 
+// Obtengo el carrito anterior o inicializo uno vacío
+let esteCarrito = JSON.parse(localStorage.getItem('carrito')) || []
+
+// Booleano para saber si el carrito está visible o no
+let carritoVisible = () => document.getElementById('nuevo-carrito').classList.value.includes('mostrar')
+
+
+/*    Productos desde JSON   */
 let baseDeDatos
 async function fetchDataRender() {
   const response = await fetch("./productos.json")
   baseDeDatos = await response.json()
   renderProducts(baseDeDatos)
 }
+
+
+/*    Eventos   */
+function agregarEventListeners() {
+  // Input del buscador
+  buscador.addEventListener('input', evt => buscarProductos(evt))
+
+  // Input para filtrar
+  filtro.addEventListener('input', evt => filtrarProductos(evt))
+
+  // Botón para abrir-cerrar carrito
+  botonAbrirCarrito.addEventListener('click', abrirNuevoCarrito);
+
+  // Botón para comprar el carrito
+  botonComprarCarrito.addEventListener('click', comprarCarrito)
+
+  // Botón para vaciar el carrito
+  botonVaciarCarrito.addEventListener('click', vaciarCarrito)
+
+  // Registro los clicks dentro del carrito
+  carritoProductos.addEventListener('click', evt => modificarCarrito(evt))
+}
+
 
 /*    Funciones   */
 
@@ -105,9 +134,8 @@ function agregarProducto(btn) {
       'border-radius': '15px'
     }
   }).showToast();
-  
-}
 
+}
 
 // Función para cambiar número del carrito
 function cartNumber() {
@@ -123,7 +151,7 @@ function cartNumber() {
 function vaciarCarrito() {
   // Cierro el carrito
   document.getElementById('nuevo-carrito').classList.remove('mostrar')
-  
+
   esteCarrito = []
   localStorage.setItem('carrito', JSON.stringify([]))
   numeroCarrito.innerHTML = 0
@@ -157,66 +185,25 @@ function comprarCarrito() {
   vaciarCarrito()
 }
 
-
-
-/*    Eventos   */
-
-// Input del buscador
-buscador.addEventListener('input', (e) => {
-  const busqueda = e.target.value.toLowerCase()
+// Función del buscador
+function buscarProductos(evt) {
+  const busqueda = evt.target.value.toLowerCase()
   const resultado = baseDeDatos.filter(producto =>
     producto.nombre.toLowerCase().includes(busqueda)
   )
   renderProducts(resultado)
-})
+}
 
-// Input para filtrar
-filtro.addEventListener('input', (e) => {
-  const seleccion = e.target.value
+// Función para filtrar
+function filtrarProductos(evt) {
+  const seleccion = evt.target.value
   const resultado = baseDeDatos.filter(producto =>
     producto.categoria.includes(seleccion)
   )
   renderProducts(resultado)
-})
-
-
-
-// Botón para vaciar el carrito
-botonVaciarCarrito.addEventListener('click', vaciarCarrito)
-
-// Botón para comprar el carrito
-botonComprarCarrito.addEventListener('click', comprarCarrito)
-
-
-
-
-
-
-
-//    Inicialización   
-
-// Obtengo los productos desde el JSON y los renderizo
-fetchDataRender()
-
-// Obtengo el carrito anterior o inicializo uno vacío
-let esteCarrito = JSON.parse(localStorage.getItem('carrito')) || []
-
-// Actualizo el número del carrito
-cartNumber()
-
-
-
-
-
-
-
-
-
+}
 
 /* Función para abrir y cerrar nuevo carrito */
-
-botonAbrirCarrito.addEventListener('click', abrirNuevoCarrito);
-
 function abrirNuevoCarrito() {
   // Primero cargo los datos en el carrito
   newFillCart()
@@ -234,7 +221,6 @@ function abrirNuevoCarrito() {
 }
 
 // función para llenar el carrito de productos
-
 function newFillCart() {
   carritoProductos.innerHTML = ''
   let totalFinal = 0
@@ -288,25 +274,7 @@ function newFillCart() {
   carritoTotal.innerHTML += `Total: $${totalFinal}`
 }
 
-
-
-
-
-
-
-// Condición para saber si el carrito está visible o no
-
-let carritoVisible = () => document.getElementById('nuevo-carrito').classList.value.includes('mostrar')
-
-
-
-
-
-
-
-//recibo los clicks dentro del carrito
-carritoProductos.addEventListener('click', evt => modificarCarrito(evt))
-
+// Función para modificar valores desde el carrito
 function modificarCarrito(evt) {
 
   // si el click fue en el botón para eliminar
@@ -326,9 +294,9 @@ function modificarCarrito(evt) {
     disminuirProducto(evt)  // llamo función disminuir
   }
 
-
 }
 
+// Función para eliminar un producto del carrito
 function eliminarProducto(evt) {
   //obtengo el id del producto del carrito
   const botonId = evt.target.getAttribute('productid')
@@ -370,6 +338,7 @@ function eliminarProducto(evt) {
 
 }
 
+// Función para sumar una unidad a un producto del carrito
 function aumentarProducto(evt) {
   //obtengo el id del producto del carrito
   const botonId = evt.target.getAttribute('productid')
@@ -412,6 +381,7 @@ function aumentarProducto(evt) {
 
 }
 
+// Función para restar una unidad a un producto del carrito
 function disminuirProducto(evt) {
   //obtengo el id del producto del carrito
   const botonId = evt.target.getAttribute('productid')
@@ -459,3 +429,24 @@ function disminuirProducto(evt) {
   }
 
 }
+
+// Función para inicializar
+function inicializar() {
+  // Obtengo los productos desde el JSON y los renderizo
+  fetchDataRender()
+
+  // Añado los escuchadores
+  agregarEventListeners()
+
+  // Actualizo el número del carrito
+  cartNumber()
+}
+
+
+
+
+
+
+
+/* Inicialización */
+inicializar()
