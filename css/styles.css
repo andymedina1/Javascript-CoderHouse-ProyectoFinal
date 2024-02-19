@@ -33,6 +33,10 @@ i {
   pointer-events: none;
 }
 
+h4, footer, p {
+  cursor: default;
+}
+
 .navbar-principal {
   display: flex;
   width: 100vw;
@@ -49,7 +53,11 @@ i {
   line-height: 0.8em;
   text-shadow: 4px 4px 0px #2a2e30;
   margin: 0.2em;
-  padding-left: 5em;
+}
+
+.navbar__titulo-link {
+  text-decoration: none;
+  margin-left: 5em;
 }
 
 .navbar__buscador {

@@ -24,7 +24,9 @@
   <header class="header">
     <nav class="navbar-principal">
       <!-- Título -->
-      <h1 class="navbar__titulo">Tienda</h1>
+      <a class="navbar__titulo-link" href="index.html">
+        <h1 class="navbar__titulo">Tienda</h1>
+      </a>
 
       <!-- Filtro de Productos -->
       <select id="filtro" class="navbar__filtro btn btn-light">
@@ -53,7 +55,7 @@
     <!-- Carrito -->
     <div class="nuevo-carrito" id="nuevo-carrito">
       <div class="nuevo-carrito__contenedor">
-        
+
         <div class="nuevo-carrito__cabecera">
           <p class="nuevo-carrito__cabecera-titulo">Carrito</p>
         </div>
@@ -61,7 +63,7 @@
         <div class="nuevo-carrito__productos" id="carritoProductos">
           <!-- Esto se llena con un Fetch al JSON -->
         </div>
-        
+
         <div class="nuevo-carrito__compra">
           <p class="nuevo-carrito__compra-precio" id="carritoTotal">Total $0</p>
           <div class="nuevo-carrito__compra-botonera">
@@ -76,7 +78,7 @@
     <div class="middle-container" id="middleContainer">
       <!-- Contenido agregado dinámicamente desde JS -->
     </div>
-    
+
   </main>
 
   <footer class="footer">Proyecto Final - JS - CodeHouse</footer>
