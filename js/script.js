@@ -3,11 +3,8 @@
 
 const container = document.querySelector('#middleContainer')
 const botonAbrirCarrito = document.querySelector('#botonCarrito')
-const modal = new bootstrap.Modal(document.querySelector('#miModal'))
 const buscador = document.querySelector('#buscador')
 const filtro = document.querySelector('#filtro')
-const modalProductos = document.querySelector('#modalProductos')
-const modalTotal = document.querySelector('#modalTotal')
 const numeroCarrito = document.querySelector('#numeroCarrito')
 const botonVaciarCarrito = document.querySelector('#vaciarCarrito')
 const botonComprarCarrito = document.querySelector('#comprarCarrito')
@@ -111,25 +108,6 @@ function agregarProducto(btn) {
   
 }
 
-// Función para cargar los productos en el carrito
-function fillCart() {
-  modalProductos.innerHTML = ''
-  let totalFinal = 0
-  const productosCarrito = JSON.parse(localStorage.getItem('carrito'))
-  productosCarrito.forEach(producto => {
-    modalProductos.innerHTML += /* html */
-      `<tr>
-      <td> ${producto.nombre} </td>
-      <td> ${producto.cantidad}</td>
-      <td>$${producto.precio}</td>
-      <td>$${producto.cantidad * producto.precio}</td>
-    </tr>
-    `
-    totalFinal += (producto.cantidad * producto.precio)
-  })
-  modalTotal.innerHTML = ''
-  modalTotal.innerHTML += `Total: $${totalFinal}`
-}
 
 // Función para cambiar número del carrito
 function cartNumber() {
@@ -143,14 +121,17 @@ function cartNumber() {
 
 // Función para vaciar el carrito
 function vaciarCarrito() {
+  // Cierro el carrito
+  document.getElementById('nuevo-carrito').classList.remove('mostrar')
+  
   esteCarrito = []
   localStorage.setItem('carrito', JSON.stringify([]))
   numeroCarrito.innerHTML = 0
-  document.getElementById('nuevo-carrito').classList.remove('mostrar')
 }
 
 // Función para comprar el carrito
 function comprarCarrito() {
+  // Cierro el carrito
   document.getElementById('nuevo-carrito').classList.remove('mostrar')
 
   // Verifico que el carrito no esté vacío
@@ -226,24 +207,7 @@ cartNumber()
 
 
 
-/* función para abrir el viejo Carrito */
-/*
 
-// Botón para mostrar el Carrito
-botonAbrirCarrito.addEventListener('click', () => {
-  fillCart()
-
-  // Si el carrito está vacío, deshabilito el botón para vaciar
-  if (esteCarrito.length == 0) {
-    botonVaciarCarrito.setAttribute("disabled", "")
-  } else {
-    botonVaciarCarrito.removeAttribute("disabled")
-  }
-
-  modal.show()
-})
-
-*/
 
 
 
