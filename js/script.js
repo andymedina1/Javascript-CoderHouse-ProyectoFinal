@@ -122,7 +122,7 @@ function agregarProducto(btn) {
 
   // Muestro un Toast de confirmación
   Toastify({
-    text: "Agredado al carrito",
+    text: "Agregado al carrito",
     duration: 2000,
     gravity: "bottom",
     position: "right",
