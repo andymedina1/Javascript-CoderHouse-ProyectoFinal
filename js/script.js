@@ -172,8 +172,6 @@ function vaciarCarrito() {
 
 // Función para comprar el carrito
 function comprarCarrito() {
-  // Cierro el carrito
-  document.getElementById('nuevo-carrito').classList.remove('mostrar')
 
   // Verifico que el carrito no esté vacío
   if (esteCarrito.length == 0) {
@@ -188,14 +186,19 @@ function comprarCarrito() {
     return
   }
 
+  // Cierro el carrito
+  document.getElementById('nuevo-carrito').classList.remove('mostrar')
+
   // Muestro un alert confirmando la compra
   Swal.fire({
     title: "Compra Realizada!",
     icon: "success"
   });
 
-  // Limpio el carrito
-  vaciarCarrito()
+  // Limpio el carrito cuando ya esté cerrado
+  setTimeout(() => {
+    vaciarCarrito()
+  }, 800);
 }
 
 // Función del buscador
